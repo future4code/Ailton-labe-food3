@@ -14,7 +14,7 @@ import {
 } from "../../global/GeneralStyled";
 
 export default function AddressPage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [data, setData] = useState("");
   const { form, handleInputChange, clear } = useForm({
     street: "",
@@ -33,7 +33,8 @@ export default function AddressPage() {
 
   const submitAddress = (event) => {
     event.preventDefault();
-    requestData("put", "address", form, "", setData);
+    const token = localStorage.getItem("token");
+    requestData("put", "address", form, token, setData);
   };
 
   return (
