@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 import LogoIFuture from "../../assets/logo-future-eats-invert.png";
-import { TextField, CircularProgress } from "@mui/material";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+import {
+  TextField,
+  CircularProgress,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
+} from "@mui/material";
 import { useForm } from "../../hooks/useForm";
 import {
-  ContainerLogin,
+  Container,
   DivTitle,
   Form,
   ImgLogo,
@@ -12,7 +21,8 @@ import {
   DivSignUp,
   TextSignUp,
   TextOnClick,
-} from "./styled";
+} from "../../global/GeneralStyled";
+import clsx from "clsx";
 import { goToPage } from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
 import { requestData } from "../../services/requestAPI";
@@ -26,6 +36,19 @@ export default function LoginPage() {
   });
   const [data, setData] = useState("");
   const navigate = useNavigate();
+
+  const [values, setValues] = useState({
+    password: "",
+    showPassword: false,
+  });
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   useEffect(() => {
     if (!!data) {
@@ -45,7 +68,7 @@ export default function LoginPage() {
   };
 
   return (
-    <ContainerLogin>
+    <Container>
       <ImgLogo src={LogoIFuture} />
       <DivTitle>
         <Title>Entrar</Title>
@@ -67,7 +90,7 @@ export default function LoginPage() {
             mb: "1rem",
           }}
         />
-        <TextField
+        {/* <TextField
           name={"password"}
           value={form.password}
           onChange={handleInputChange}
@@ -81,7 +104,33 @@ export default function LoginPage() {
             m: 0,
             mb: "1rem",
           }}
-        />
+        /> */}
+
+        <FormControl variant="outlined" fullWidth sx={{
+            m: 0,
+            mb: "1rem",
+          }}>
+          <InputLabel>Senha</InputLabel>
+          <OutlinedInput
+            id={"password"}
+            name={"password"}
+            value={form.password}
+            onChange={handleInputChange}
+            variant="outlined"
+            label="Senha"
+            type={values.showPassword ? "text" : "password"}
+            title={"Digite sua senha"}
+            required
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton onClick={handleClickShowPassword} edge="end">
+                  {values.showPassword ? <MdVisibility /> : <MdVisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+
         <ButtonLogin>Entrar</ButtonLogin>
       </Form>
       <DivSignUp>
@@ -92,6 +141,6 @@ export default function LoginPage() {
           </TextOnClick>
         </TextSignUp>
       </DivSignUp>
-    </ContainerLogin>
+    </Container>
   );
 }
