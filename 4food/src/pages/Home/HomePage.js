@@ -5,8 +5,9 @@ import { requestData } from "../../services/requestAPI";
 import CardHome from "../../component/CardHome/CardHome";
 import { CardContainer, InputSearch } from "./styled";
 import InputAdornment from '@mui/material/InputAdornment';
-import { Search } from "@mui/icons-material";
+import Search from "../../assets/img/search.png"
 import TextField from '@mui/material/TextField';
+import Footer from "../../component/Footer/Footer";
 
 export default function HomePage() {
   useProtectPage();
@@ -32,7 +33,7 @@ export default function HomePage() {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <Search />
+               <img src={Search} alt="lupinha"/>
               </InputAdornment>
             ),
           }}
@@ -41,6 +42,7 @@ export default function HomePage() {
       <CardContainer>
         {getData}
       </CardContainer>
+      <Footer page={"home"}/>
     </div>
   );
 }

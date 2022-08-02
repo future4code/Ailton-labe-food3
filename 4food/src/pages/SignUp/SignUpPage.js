@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import LogoIFuture from "../../assets/logo-future-eats-invert.png";
+import LogoIFuture from "../../assets/img/logo.png";
 import { TextField, CircularProgress, OutlinedInput } from "@mui/material";
 import { useForm } from "../../hooks/useForm";
 import { goToPage } from "../../routes/coordinator";

@@ -1,11 +1,14 @@
 import React from "react";
-import { MdOutlineArrowBackIosNew } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import { goToPage } from "../../routes/coordinator";
+import { Container, GoBack } from "./styled";
 
 export default function Header({ title }) {
+  const navigate = useNavigate()
   return (
-    <div>
+    <Container>
+      <GoBack onClick={()=> goToPage(navigate, -1)} />
       <h2>{title} </h2>
-      <MdOutlineArrowBackIosNew />
-    </div>
+    </Container>
   );
 }
