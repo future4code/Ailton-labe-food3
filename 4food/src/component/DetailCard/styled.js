@@ -19,7 +19,6 @@ export const Img = styled.img`
   width: 6rem;
   height: 100%;
   border-radius: 8px;
-  background-color: #b8b8b8;
   object-fit: cover;
 `;
 
