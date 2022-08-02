@@ -27,7 +27,8 @@ export default function CardHome({ item }) {
             {item.deliveryTime - 10} - {item.deliveryTime} min
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Frete R${item.shipping},00
+            Frete R${item.shipping.toFixed(2)}
+
           </Typography>
         </CardInfo>
       </CardActionArea>
