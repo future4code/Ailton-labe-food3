@@ -3,6 +3,10 @@ import { useProtectPage } from "../../hooks/useProtectPage";
 import Header from "../../component/Header/Header";
 import { requestData } from "../../services/requestAPI";
 import CardHome from "../../component/CardHome/CardHome";
+import { CardContainer, InputSearch } from "./styled";
+import InputAdornment from '@mui/material/InputAdornment';
+import { Search } from "@mui/icons-material";
+import TextField from '@mui/material/TextField';
 
 export default function HomePage() {
   useProtectPage();
@@ -19,8 +23,24 @@ export default function HomePage() {
   return (
     <div>
       <Header title={"Ifuture"} />
-      <input placeholder="Restaurante" />
-      <div>{getData} </div>
+      <InputSearch>
+        <TextField
+          id="input-with-icon-textfield"
+          variant="outlined"
+          placeholder="Restaurantes"
+          fullWidth
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Search />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </InputSearch>
+      <CardContainer>
+        {getData}
+      </CardContainer>
     </div>
   );
 }

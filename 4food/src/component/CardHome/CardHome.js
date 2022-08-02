@@ -1,8 +1,7 @@
 import React from "react";
-import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import { CardActionArea } from "@mui/material";
 import { goToPage } from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
 import { CardContainer, CardInfo, Title } from "./styled";
@@ -10,7 +9,7 @@ import { CardContainer, CardInfo, Title } from "./styled";
 export default function CardHome({ item }) {
   const navigate = useNavigate();
   return (
-    <Card
+    <CardContainer
       sx={{ maxWidth: "20.5rem", mb: "0.5rem" }}
       onClick={() => goToPage(navigate, `/restaurant/${item.id}/${item.name}`)}
     >
@@ -32,6 +31,6 @@ export default function CardHome({ item }) {
           </Typography>
         </CardInfo>
       </CardActionArea>
-    </Card>
+    </CardContainer>
   );
 }
