@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import LogoIFuture from "../../assets/logo-future-eats-invert.png";
+import LogoIFuture from "../../assets/img/logo.png";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import {
   TextField,

@@ -1,6 +1,4 @@
-import { TextField } from "@mui/material";
 import styled from "styled-components";
-import search from '../../assets/search.png'
 
 
 export const CardContainer = styled.div`
