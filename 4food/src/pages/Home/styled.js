@@ -6,7 +6,7 @@ margin: 0 auto;
 `;
 
 export const InputSearch = styled.div`
-width: 90%;
+width: 328px;
 margin: 0 auto;
 margin-bottom:0.5rem ;
 `

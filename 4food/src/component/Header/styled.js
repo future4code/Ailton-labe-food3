@@ -16,6 +16,7 @@ export const Container = styled.div `
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         letter-spacing: -0.39px;
         display: flex;
+        font-weight: 500;
         /* width: 55vw; */
         font-size: 1rem;
         text-align: center;
