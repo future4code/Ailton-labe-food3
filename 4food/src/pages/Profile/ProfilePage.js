@@ -14,6 +14,7 @@ import {
   InfoHistory,
   Img,
 } from "./styled";
+import { goToPage } from "../../routes/coordinator";
 
 export default function ProfilePage() {
   const [data, setData] = useState();
@@ -36,14 +37,22 @@ export default function ProfilePage() {
               <Info>{data.user.email}</Info>
               <Info>{data.user.cpf}</Info>
             </div>
-            <Img src={Edit} alt="edit" />
+            <Img
+              src={Edit}
+              alt="edit"
+              onClick={() => goToPage(navigate, '/edituser')}
+            />
           </InfoUser>
           <Address>
             <div>
               <TitleAddress>Endereço cadastrado</TitleAddress>
               <Info>{data.user.address}</Info>
             </div>
-            <Img src={Edit} alt="edit" />
+            <Img
+              src={Edit}
+              alt="edit"
+              onClick={() => goToPage(navigate, '/editaddress')}
+            />
           </Address>
           <History>
             <InfoHistory>Histórico do pedidos</InfoHistory>

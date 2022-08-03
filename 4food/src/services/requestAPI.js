@@ -1,7 +1,9 @@
+
 import axios from "axios";
+import Swal from "sweetalert2";
 import { BASE_URL } from "../constants/url";
 
-export const requestData = async (type, path, body, token, setData) => {
+export const requestData = async (type, path, body, token, setData, setEdit) => {
   try {
     let res;
     if (!body)
@@ -12,15 +14,19 @@ export const requestData = async (type, path, body, token, setData) => {
       res = await axios[type](`${BASE_URL}${path}`, body, {
         headers: { auth: token },
       });
-    setData(res.data);
+    if (setEdit) {
+      setEdit(true)
+    }
+    if (setData) {
+      setData(res.data);
+    }
   } catch (error) {
-    console.log(error);
-    // if (setErro) {
-    //   setErro(error.response);
-    //   if (navigate && error.response.status === 401 && token) {
-    //     localStorage.setItem("token", "");
-    //     goToPage(navigate, "");
-    //   }
-    // }
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: `${error.response.data.message}`,
+      footer: `Código do erro ${error.response.status}`,
+      confirmButtonColor: 'red'
+    });
   }
 };

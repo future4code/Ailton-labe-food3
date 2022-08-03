@@ -17,6 +17,7 @@ export const PriceHistory = styled(Price)`
 
 export const DescriptionDate = styled(Description)`
   color: #000;
+  display: flex;
   align-items: center;
 `;
 export const CategoryHistory = styled(Category)``;
