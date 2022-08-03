@@ -8,6 +8,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Search from "../../assets/img/search.png"
 import TextField from '@mui/material/TextField';
 import Footer from "../../component/Footer/Footer";
+import PopUpOrder  from "../../component/PopUpOrder/PopUpOrder";
 
 export default function HomePage() {
   useProtectPage();
@@ -41,6 +42,7 @@ export default function HomePage() {
       <CardContainer>
         {getData}
       </CardContainer>
+      <PopUpOrder />
       <Footer page={"home"}/>
     </div>
   );
