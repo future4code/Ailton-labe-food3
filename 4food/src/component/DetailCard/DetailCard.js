@@ -1,12 +1,29 @@
-import React from 'react'
-import { Category, Container, Description, Img, Price, Rectangle, Info, ButtonAdd, Quantity } from "./styled"
-import { Title } from "../../global/GeneralStyled"
+import React, { useState } from "react";
+
+import {
+  Category,
+  Container,
+  Description,
+  Img,
+  Price,
+  Rectangle,
+  Info,
+  ButtonAdd,
+  Quantity,
+} from "./styled";
+import { Title } from "../../global/GeneralStyled";
+import QuantityDialog from "../QuantityDialog/QuantityDialog";
 
 export default function DetailCard({ product }) {
-  console.log('categotias', product.category)
-  return (
+  const [openButton, setOpenButton] = useState(false);
 
+  const addToCart = () => {
+    setOpenButton(true);
+  };
+
+  return (
     <Rectangle>
+      <QuantityDialog openButton={openButton} setOpenButton={setOpenButton} />
       <Quantity>2</Quantity>
       <div>
         <Img src={product.photoUrl} />
@@ -15,10 +32,8 @@ export default function DetailCard({ product }) {
         <Category>{product.name}</Category>
         <Description>{product.description}</Description>
         <Price>R${product.price.toFixed(2)}</Price>
-        <ButtonAdd>Adicionar</ButtonAdd>
+        <ButtonAdd onClick={addToCart}>Adicionar</ButtonAdd>
       </Info>
-
     </Rectangle>
-
-  )
+  );
 }
