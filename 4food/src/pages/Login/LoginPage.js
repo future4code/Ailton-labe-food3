@@ -90,26 +90,10 @@ export default function LoginPage() {
             mb: "1rem",
           }}
         />
-        {/* <TextField
-          name={"password"}
-          value={form.password}
-          onChange={handleInputChange}
-          label={"Senha"}
-          variant={"outlined"}
-          fullWidth
-          margin="normal"
-          required
-          type={"password"}
-          sx={{
-            m: 0,
-            mb: "1rem",
-          }}
-        /> */}
-
         <FormControl variant="outlined" fullWidth sx={{
-            m: 0,
-            mb: "1rem",
-          }}>
+          m: 0,
+          mb: "1rem",
+        }}>
           <InputLabel>Senha</InputLabel>
           <OutlinedInput
             id={"password"}

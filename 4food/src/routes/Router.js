@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GlobalState from "../global/GlobalState";
 import AddressPage from "../pages/Address/AddressPage";
 import Cart from "../pages/Cart/Cart";
+import EditAddressPage from "../pages/EditAddress/EditAddressPage";
+import EditUserPage from "../pages/EditUser/EditUserPage";
 import ErrorPage from "../pages/Error/ErrorPage";
 import HomePage from "../pages/Home/HomePage";
 import LoginPage from "../pages/Login/LoginPage";
@@ -40,6 +42,8 @@ export default function Router() {
             </GlobalState>
           }
         />
+        <Route path="/edituser" element={<EditUserPage />} />
+        <Route path="/editaddress" element={<EditAddressPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
