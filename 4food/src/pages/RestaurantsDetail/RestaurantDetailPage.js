@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DetailCard from "../../component/DetailCard/DetailCard";
 import { useProtectPage } from "../../hooks/useProtectPage";
@@ -9,9 +9,11 @@ import { DetailsTitle, CardContainer, CardInfo, Title } from "./styled";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import { GlobalContext } from "../../global/GlobalContext";
 
 export default function RestaurantDetailPage() {
   useProtectPage();
+  const { setCart, cart } = useContext(GlobalContext);
   const [data, setData] = useState("");
   const params = useParams();
   useEffect(() => {
@@ -21,7 +23,6 @@ export default function RestaurantDetailPage() {
 
   let array = [];
   let arrayCard = [];
-
   if (data) {
     //1.separar categorias e impedir repetição
     for (const products of data.restaurant.products) {
@@ -29,7 +30,7 @@ export default function RestaurantDetailPage() {
       if (!array.includes(products.category)) {
         const cate = data.restaurant.products?.map((item) => {
           if (item.category === products.category) {
-            return <DetailCard key={item.id} product={item} />;
+            return <DetailCard key={item.id} product={item} restaurant={data.restaurant}/>;
           }
         });
         //2.verifica se o produto ja existe no array
@@ -56,7 +57,7 @@ export default function RestaurantDetailPage() {
               component="img"
               height="120px"
               width="328px"
-              sx={{mb:"0.75rem"}}
+              sx={{ mb: "0.75rem" }}
               image={data.restaurant.logoUrl}
               alt={data.restaurant.name}
             />
@@ -64,11 +65,11 @@ export default function RestaurantDetailPage() {
             <Typography
               variant="body2"
               color="text.secondary"
-              sx={{m:"0.3rem 0"}}
+              sx={{ m: "0.3rem 0" }}
             >
               {data.restaurant.category}
             </Typography>
-            <CardInfo sx={{p:"0"}}>
+            <CardInfo sx={{ p: "0" }}>
               <Typography variant="body2" color="text.secondary" mb="0.5rem">
                 {data.restaurant.deliveryTime - 10} -{" "}
                 {data.restaurant.deliveryTime} min

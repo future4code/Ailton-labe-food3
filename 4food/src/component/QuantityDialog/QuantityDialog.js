@@ -8,13 +8,20 @@ import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { DialogContainer } from "./styled";
-import { goToPage } from "../../routes/coordinator";
-import { useNavigate } from "react-router-dom";
+// import { goToPage } from "../../routes/coordinator";
+// import { useNavigate } from "react-router-dom";
+import { InputLabel } from "@mui/material";
 
-export default function QuantityDialog({ openButton, setOpenButton }) {
-  const navigate = useNavigate()
+export default function QuantityDialog({
+  openButton,
+  setOpenButton,
+  setQntProduct,
+  qntProduct,
+  setConfirmAdd
+}) {
+  // const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState()
+  const [value, setValue] = useState();
 
   useEffect(() => {
     setOpen(openButton);
@@ -23,11 +30,16 @@ export default function QuantityDialog({ openButton, setOpenButton }) {
   const handleClose = () => {
     setOpen(false);
     setOpenButton(false);
-    goToPage(navigate, "/cart")
+  };
+
+  const submitAdd = () => {
+    setOpen(false);
+    setOpenButton(false);
+    setConfirmAdd(true);
   };
 
   return (
-    <div>
+    <>
       <DialogContainer open={open} onClose={handleClose} m="0">
         <DialogTitle>Selecione a quantidade desejada</DialogTitle>
         <DialogContent>
@@ -41,26 +53,37 @@ export default function QuantityDialog({ openButton, setOpenButton }) {
             }}
           >
             <FormControl sx={{ mt: 2, minWidth: 220 }}>
-              <Select autoFocus>
-                <MenuItem value={false}>Quantidade</MenuItem>
-                <MenuItem value="1">1</MenuItem>
-                <MenuItem value="2">2</MenuItem>
-                <MenuItem value="3">3</MenuItem>
-                <MenuItem value="4">4</MenuItem>
-                <MenuItem value="5">5</MenuItem>
-                <MenuItem value="6">6</MenuItem>
-                <MenuItem value="7">7</MenuItem>
-                <MenuItem value="8">8</MenuItem>
-                <MenuItem value="9">9</MenuItem>
-                <MenuItem value="10">10</MenuItem>
+              <InputLabel id="demo-controlled-open-select-label">
+                Quantidade
+              </InputLabel>
+              <Select
+                value={qntProduct}
+                autoFocus
+                id="demo-controlled-open-select-label"
+                label={"Quantidade"}
+                required
+                onChange={(e) => setQntProduct(e.target.value)}
+              >
+                <MenuItem selected value={1}>
+                  1
+                </MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={5}>5</MenuItem>
+                <MenuItem value={6}>6</MenuItem>
+                <MenuItem value={7}>7</MenuItem>
+                <MenuItem value={8}>8</MenuItem>
+                <MenuItem value={9}>9</MenuItem>
+                <MenuItem value={10}>10</MenuItem>
               </Select>
             </FormControl>
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>ADICIONAR AO CARRINHO</Button>
+          <Button onClick={submitAdd}>ADICIONAR AO CARRINHO</Button>
         </DialogActions>
       </DialogContainer>
-    </div>
+    </>
   );
 }
