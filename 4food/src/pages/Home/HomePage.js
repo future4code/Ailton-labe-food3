@@ -16,7 +16,6 @@ export default function HomePage() {
     const token = localStorage.getItem("token");
     requestData("get", "restaurants", "", token, setData);
   }, []);
-  console.log(data);
 
   const getData = data?.restaurants?.map((item) => {
     return <CardHome item={item} key={item.id} />;

@@ -5,11 +5,7 @@ import { useProtectPage } from "../../hooks/useProtectPage";
 import { requestData } from "../../services/requestAPI";
 import { Container } from "../../global/GeneralStyled";
 import Header from "../../component/Header/Header";
-import {
-  CardContainer,
-  CardInfo,
-  Title,
-} from "../../component/CardHome/styled";
+import { DetailsTitle, CardContainer, CardInfo, Title } from "./styled";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
@@ -40,8 +36,8 @@ export default function RestaurantDetailPage() {
         array.push(products.category);
         //3.criação do card que filtra por categoria
         arrayCard.push(
-          <div>
-            <h1>{products.category}</h1>
+          <div key={products.id}>
+            <DetailsTitle>{products.category}</DetailsTitle>
             {cate}
           </div>
         );
@@ -53,26 +49,27 @@ export default function RestaurantDetailPage() {
   return (
     <Container>
       <Header title="Restaurante" />
-      <CardContainer sx={{ boxShadow: 0, maxWidth: "20.5rem", mb: "0.5rem" }}>
+      <CardContainer sx={{ boxShadow: 0, width: "20rem", mb: "0.5rem" }}>
         {data && (
           <CardActionArea>
             <CardMedia
               component="img"
               height="120px"
               width="328px"
+              sx={{mb:"0.75rem"}}
               image={data.restaurant.logoUrl}
               alt={data.restaurant.name}
             />
             <Title>{data.restaurant.name}</Title>
             <Typography
-              sx={{ ml: "1rem" }}
               variant="body2"
               color="text.secondary"
+              sx={{m:"0.3rem 0"}}
             >
               {data.restaurant.category}
             </Typography>
-            <CardInfo>
-              <Typography variant="body2" color="text.secondary">
+            <CardInfo sx={{p:"0"}}>
+              <Typography variant="body2" color="text.secondary" mb="0.5rem">
                 {data.restaurant.deliveryTime - 10} -{" "}
                 {data.restaurant.deliveryTime} min
               </Typography>
@@ -80,7 +77,7 @@ export default function RestaurantDetailPage() {
                 Frete R${data.restaurant.shipping.toFixed(2)}
               </Typography>
             </CardInfo>
-            <Typography m="0 1rem" variant="body2" color="text.secondary">
+            <Typography variant="body2" color="text.secondary">
               {data.restaurant.address}
             </Typography>
           </CardActionArea>
