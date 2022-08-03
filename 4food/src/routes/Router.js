@@ -1,6 +1,7 @@
 // import { Restaurant } from "@mui/icons-material";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import GlobalState from "../global/GlobalState";
 import AddressPage from "../pages/Address/AddressPage";
 import Cart from "../pages/Cart/Cart";
 import ErrorPage from "../pages/Error/ErrorPage";
@@ -18,7 +19,14 @@ export default function Router() {
       <Routes>
         <Route index element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/cart"
+          element={
+            <GlobalState>
+              <Cart />
+            </GlobalState>
+          }
+        />
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/profile" element={<ProfilePage />} />
@@ -26,7 +34,11 @@ export default function Router() {
         <Route path="/address" element={<AddressPage />} />
         <Route
           path="/restaurant/:id/:name"
-          element={<RestaurantDetailPage />}
+          element={
+            <GlobalState>
+              <RestaurantDetailPage />
+            </GlobalState>
+          }
         />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
