@@ -10,6 +10,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { GlobalContext } from "../../global/GlobalContext";
+import Footer from "../../component/Footer/Footer";
 
 export default function RestaurantDetailPage() {
   useProtectPage();
@@ -30,7 +31,13 @@ export default function RestaurantDetailPage() {
       if (!array.includes(products.category)) {
         const cate = data.restaurant.products?.map((item) => {
           if (item.category === products.category) {
-            return <DetailCard key={item.id} product={item} restaurant={data.restaurant}/>;
+            return (
+              <DetailCard
+                key={item.id}
+                product={item}
+                restaurant={data.restaurant}
+              />
+            );
           }
         });
         //2.verifica se o produto ja existe no array
@@ -86,6 +93,7 @@ export default function RestaurantDetailPage() {
       </CardContainer>
       {/* passo 4. imprimir categorias e cards contidos nela */}
       <div>{arrayCard}</div>
+      <Footer />
     </Container>
   );
 }

@@ -24,7 +24,7 @@ export default function DetailCard({ product, restaurant }) {
   const addToCart = () => {
     setOpenButton(true);
   };
-
+  console.log("DetailCard", cart);
   useEffect(() => {
     if (confirmAdd) {
       const spreadCart = { ...cart };

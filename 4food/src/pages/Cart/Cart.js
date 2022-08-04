@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Footer from "../../component/Footer/Footer";
 import Header from "../../component/Header/Header";
 import Radio from "@mui/material/Radio";
@@ -17,9 +17,33 @@ import {
   CardCart,
   BtnConfirm,
 } from "./styled";
-import { Title } from "@mui/icons-material";
+import { requestData } from "../../services/requestAPI";
+import { GlobalContext } from "../../global/GlobalContext";
+import { useProtectPage } from "../../hooks/useProtectPage";
 
 export default function Cart() {
+  useProtectPage();
+  const [radio, setRadio] = useState("money");
+  const [order, setOrder] = useState();
+  const { setCart, cart } = useContext(GlobalContext);
+  const token = localStorage.getItem("token");
+  const submitLogin = (event) => {
+    const body = { products: [...arrayProducts], paymentMethod: radio };
+    requestData(
+      "post",
+      `restaurants/${cart.restaurant.id}/order`,
+      body,
+      token,
+      setOrder
+    );
+  };
+  console.log("Cart", cart.products);
+
+  const arrayProducts = cart?.products?.map((item) => {
+    return { id: item.id, quantity: item.quantity };
+  });
+  console.log("ArrayProdutcs", arrayProducts);
+  console.log(radio);
   return (
     <>
       <Header title={"Meu carrinho"} />
@@ -46,11 +70,14 @@ export default function Cart() {
 
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="female"
+            defaultValue="money"
             name="radio-buttons-group"
+            onChange={(event) => {
+              setRadio(event.target.value);
+            }}
           >
             <FormControlLabel
-              value="Dinheiro"
+              value="money"
               control={
                 <Radio
                   sx={{
@@ -64,7 +91,7 @@ export default function Cart() {
               label="Dinheiro"
             />
             <FormControlLabel
-              value="Cartao"
+              value="creditcard"
               control={
                 <Radio
                   sx={{
@@ -79,7 +106,7 @@ export default function Cart() {
             />
           </RadioGroup>
         </FormControl>
-        <BtnConfirm>Confirmar</BtnConfirm>
+        <BtnConfirm onClick={submitLogin}>Confirmar</BtnConfirm>
       </ContainerCart>
       <Footer page={"cart"} />
     </>
