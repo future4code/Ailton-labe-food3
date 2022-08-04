@@ -8,13 +8,13 @@ import {
   Rectangle,
   Info,
   ButtonAdd,
+  ButtonRemoved,
   Quantity,
 } from "./styled";
-import { Title } from "../../global/GeneralStyled";
 import QuantityDialog from "../QuantityDialog/QuantityDialog";
 import { GlobalContext } from "../../global/GlobalContext";
 
-export default function DetailCard({ product, restaurant }) {
+export default function DetailCard({ product, restaurant, page }) {
   const [openButton, setOpenButton] = useState(false);
   const { setCart, cart } = useContext(GlobalContext);
   const [qntProduct, setQntProduct] = useState(1);
@@ -24,6 +24,22 @@ export default function DetailCard({ product, restaurant }) {
   const addToCart = () => {
     setOpenButton(true);
   };
+  const removeCart = () => {
+    const listCartRemoved = cart?.products?.filter((item) => {
+      if (item.id !== product.id) {
+        return item;
+      }
+    });
+    setExiste({ bool: false });
+    setCart({ ...cart, products: listCartRemoved });
+    if (cart.products.length === 1) {
+      localStorage.setItem(
+        "cart",
+        JSON.stringify({ products: [], restaurant: {} })
+      );
+    }
+  };
+
   useEffect(() => {
     if (confirmAdd) {
       const spreadCart = { ...cart };
@@ -32,12 +48,14 @@ export default function DetailCard({ product, restaurant }) {
         address: restaurant.address,
         deliveryTime: restaurant.deliveryTime,
         id: restaurant.id,
+        shipping: restaurant.shipping
       };
       spreadCart.products.push({
         quantity: qntProduct,
         ...product,
       });
       setCart(spreadCart);
+      setQntProduct(1);
     }
   }, [confirmAdd]);
 
@@ -68,9 +86,17 @@ export default function DetailCard({ product, restaurant }) {
       <Info>
         <Category>{product?.name}</Category>
         <Description>{product?.description}</Description>
-        <Price>R${product?.price?.toFixed(2)}</Price>
+        <Price>
+          R$
+          {(page === "cart" && existe.bool)
+            ? (
+                product?.price * cart?.products[existe?.index]?.quantity
+              ).toFixed(2)
+            : product?.price?.toFixed(2)
+          }
+        </Price>
         {!existe.bool && <ButtonAdd onClick={addToCart}>Adicionar</ButtonAdd>}
-        {existe.bool && <ButtonAdd>Remover</ButtonAdd>}
+        {existe.bool && <ButtonRemoved onClick={removeCart}>Remover</ButtonRemoved>}
       </Info>
     </Rectangle>
   );

@@ -6,7 +6,16 @@ export default function GlobalState({ children }) {
   const [cart, setCart] = useState({ restaurant: {}, products: [] });
 
   useEffect(() => {
-    if (cart.products.length) {
+    if (!cart?.products?.length) {
+      const cartStorage = JSON.parse(localStorage.getItem("cart"));
+      if (cartStorage) {
+        setCart(cartStorage);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (cart?.products?.length) {
       localStorage.setItem("cart", JSON.stringify(cart));
     }
   }, [cart]);

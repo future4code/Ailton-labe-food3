@@ -73,10 +73,15 @@ export const ButtonAdd = styled.p`
   border: solid 1px #000;
 `;
 
+export const ButtonRemoved = styled(ButtonAdd)`
+  color: #e8222e;
+  border: solid 1px #e8222e;
+`;
+
 export const Quantity = styled.p`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    color:  #e8222e;
+  color: #e8222e;
   display: flex;
   font-size: 1rem;
   align-items: center;
