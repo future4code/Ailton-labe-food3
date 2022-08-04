@@ -22,7 +22,6 @@ import {
   TextSignUp,
   TextOnClick,
 } from "../../global/GeneralStyled";
-import clsx from "clsx";
 import { goToPage } from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
 import { requestData } from "../../services/requestAPI";
@@ -52,7 +51,6 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (!!data) {
-      console.log(data);
       localStorage.setItem("token", data.token);
       if (!!data.user.hasAddress) {
         goToPage(navigate, "/");
@@ -79,6 +77,7 @@ export default function LoginPage() {
           value={form.email}
           onChange={handleInputChange}
           label={"E-Mail"}
+          placeholder={"email@email.com"}
           variant={"outlined"}
           fullWidth
           margin="normal"
@@ -101,9 +100,11 @@ export default function LoginPage() {
             value={form.password}
             onChange={handleInputChange}
             variant="outlined"
+            pattern={"^.{6,}"}
+            title={"Senha deve conter no mínimo 6 caracteres"}
             label="Senha"
+            placeholder={"Mínimo 6 caracteres"}
             type={values.showPassword ? "text" : "password"}
-            title={"Digite sua senha"}
             required
             endAdornment={
               <InputAdornment position="end">

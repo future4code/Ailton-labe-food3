@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Footer from "../../component/Footer/Footer";
 import Header from "../../component/Header/Header";
 import Radio from "@mui/material/Radio";
@@ -20,13 +20,19 @@ import {
 import { requestData } from "../../services/requestAPI";
 import { GlobalContext } from "../../global/GlobalContext";
 import { useProtectPage } from "../../hooks/useProtectPage";
+import Swal from "sweetalert2";
+import DetailCard from "../../component/DetailCard/DetailCard";
+import { Space } from "../../global/GeneralStyled";
 
 export default function Cart() {
   useProtectPage();
   const [radio, setRadio] = useState("money");
   const [order, setOrder] = useState();
-  const { setCart, cart } = useContext(GlobalContext);
+  const [data, setData] = useState();
+  const { cart, setCart } = useContext(GlobalContext);
+
   const token = localStorage.getItem("token");
+
   const submitLogin = (event) => {
     const body = { products: [...arrayProducts], paymentMethod: radio };
     requestData(
@@ -37,28 +43,58 @@ export default function Cart() {
       setOrder
     );
   };
-  console.log("Cart", cart.products);
 
+  useEffect(() => {
+    requestData("get", "profile/address", "", token, setData);
+    if (order) {
+      setCart({ 
+        restaurant: {}, 
+        products: [] 
+      });
+      Swal.fire({
+        icon: "success",
+        title: "",
+        text: "Compra realizada com sucesso",
+        confirmButtonColor: "#e8222e",
+      });
+    }
+  }, [order]);
+
+  console.log(order);
   const arrayProducts = cart?.products?.map((item) => {
     return { id: item.id, quantity: item.quantity };
   });
-  console.log("ArrayProdutcs", arrayProducts);
-  console.log(radio);
   return (
     <>
       <Header title={"Meu carrinho"} />
       <ContainerCart>
         <AddressUserCart>
           <InfoCart>Endereço de entrega</InfoCart>
-          <Address> Rua: dsafsaqwkqwjkhqwkj</Address>
+          <Address>
+            {data?.address?.street}, {data?.address?.number} -{" "}
+            {data?.address?.neighbourhood}
+          </Address>
         </AddressUserCart>
         <AddressRestaurantCart>
-          <TitleRes> Nome </TitleRes>
-          <InfoCart> Endereço</InfoCart>
-          <InfoCart>tempo</InfoCart>
+          <TitleRes>{cart.restaurant.name}</TitleRes>
+          <InfoCart>{cart.restaurant.address}</InfoCart>
+          <InfoCart>
+            {cart.restaurant.deliveryTime - 10} - {cart.restaurant.deliveryTime}
+            min
+          </InfoCart>
         </AddressRestaurantCart>
 
-        <CardCart> Carrinho vazio</CardCart>
+        <CardCart>
+          {cart?.products?.map((item) => {
+            return (
+              <DetailCard
+                key={item.id}
+                product={item}
+                restaurant={cart?.restaurant}
+              />
+            );
+          })}
+        </CardCart>
 
         <FormControl fullWidth>
           <FormLabel
@@ -108,6 +144,7 @@ export default function Cart() {
         </FormControl>
         <BtnConfirm onClick={submitLogin}>Confirmar</BtnConfirm>
       </ContainerCart>
+      <Space />
       <Footer page={"cart"} />
     </>
   );

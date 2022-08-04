@@ -13,7 +13,6 @@ export const Icons = styled.div`
     justify-content: space-around;
     border-top: 1px solid #b8b8b8;
     width: 100vw;
-    /* padding: 0.688rem 2.875rem 0.688rem 2.938rem; */
     
     img{
         cursor: pointer;

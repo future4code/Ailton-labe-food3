@@ -9,10 +9,8 @@ import EditUserPage from "../pages/EditUser/EditUserPage";
 import ErrorPage from "../pages/Error/ErrorPage";
 import HomePage from "../pages/Home/HomePage";
 import LoginPage from "../pages/Login/LoginPage";
-import MenuPage from "../pages/Menu/MenuPage";
 import ProfilePage from "../pages/Profile/ProfilePage";
 import RestaurantDetailPage from "../pages/RestaurantsDetail/RestaurantDetailPage";
-import SearchPage from "../pages/Search/SearchPage";
 import SignUpPage from "../pages/SignUp/SignUpPage";
 
 export default function Router() {
@@ -29,8 +27,6 @@ export default function Router() {
             </GlobalState>
           }
         />
-        <Route path="/menu" element={<MenuPage />} />
-        <Route path="/search" element={<SearchPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/address" element={<AddressPage />} />
