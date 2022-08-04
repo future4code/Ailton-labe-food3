@@ -43,8 +43,8 @@ export default function DetailCard({ product, restaurant }) {
 
   useEffect(() => {
     const spreadCart = { ...cart };
-    for (let i = 0; i < spreadCart.products.length; i++) {
-      if (spreadCart.products[i].id === product.id) {
+    for (let i = 0; i < spreadCart?.products?.length; i++) {
+      if (spreadCart?.products[i]?.id === product?.id) {
         setExiste({ bool: true, index: i });
       }
     }
@@ -60,15 +60,15 @@ export default function DetailCard({ product, restaurant }) {
         setConfirmAdd={setConfirmAdd}
       />
       {existe.bool && (
-        <Quantity>{cart.products[existe.index].quantity}</Quantity>
+        <Quantity>{cart?.products[existe?.index]?.quantity}</Quantity>
       )}
       <div>
-        <Img src={product.photoUrl} />
+        <Img src={product?.photoUrl} />
       </div>
       <Info>
-        <Category>{product.name}</Category>
-        <Description>{product.description}</Description>
-        <Price>R${product.price.toFixed(2)}</Price>
+        <Category>{product?.name}</Category>
+        <Description>{product?.description}</Description>
+        <Price>R${product?.price?.toFixed(2)}</Price>
         {!existe.bool && <ButtonAdd onClick={addToCart}>Adicionar</ButtonAdd>}
         {existe.bool && <ButtonAdd>Remover</ButtonAdd>}
       </Info>

@@ -6,12 +6,15 @@ export const ContainerCart = styled.div``;
 export const AddressUserCart = styled.div`
   height: 4.75rem;
   background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const InfoCart = styled.p`
   width: 20.5rem;
-  height: 1.125rem;
-  margin: 0.5rem 1rem;
+  margin: 0.1rem 1rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1rem;
@@ -26,11 +29,17 @@ export const Address = styled(InfoCart)`
   color: #000;
 `;
 export const TitleRes = styled(InfoCart)`
+  padding: 0.3rem 0;
   color: #e8222e;
 `;
-export const AddressRestaurantCart = styled.div``;
+export const AddressRestaurantCart = styled.div`
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 export const CardCart = styled.div``;
 export const BtnConfirm = styled(ButtonLogin)`
-  position: absolute;
   bottom: 4.062rem;
 `;

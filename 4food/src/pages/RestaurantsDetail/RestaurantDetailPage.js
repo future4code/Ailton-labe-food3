@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import DetailCard from "../../component/DetailCard/DetailCard";
 import { useProtectPage } from "../../hooks/useProtectPage";
 import { requestData } from "../../services/requestAPI";
-import { Container } from "../../global/GeneralStyled";
+import { Container, Space } from "../../global/GeneralStyled";
 import Header from "../../component/Header/Header";
 import { DetailsTitle, CardContainer, CardInfo, Title } from "./styled";
 import CardMedia from "@mui/material/CardMedia";
@@ -93,6 +93,7 @@ export default function RestaurantDetailPage() {
       </CardContainer>
       {/* passo 4. imprimir categorias e cards contidos nela */}
       <div>{arrayCard}</div>
+      <Space />
       <Footer />
     </Container>
   );

@@ -26,7 +26,7 @@ export const requestData = async (type, path, body, token, setData, setEdit) => 
       title: "Oops...",
       text: `${error.response.data.message}`,
       footer: `Código do erro ${error.response.status}`,
-      confirmButtonColor: 'red'
+      confirmButtonColor: '#e8222e'
     });
   }
 };

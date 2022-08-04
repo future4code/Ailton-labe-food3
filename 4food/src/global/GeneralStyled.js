@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -85,4 +85,8 @@ export const TextOnClick = styled.strong`
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
+`;
+export const Space = styled.div`
+  height: 3.562rem;
+  width: 100%;
 `;

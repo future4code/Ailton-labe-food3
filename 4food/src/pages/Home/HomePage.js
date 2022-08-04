@@ -14,12 +14,14 @@ import CategorySelected from "../../component/CategorySelected/CategorySelected"
 export default function HomePage() {
   useProtectPage();
   const [data, setData] = useState("");
+  const [order, setOrder] = useState("")
   const [select, setSelect] = useState("Todos");
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     requestData("get", "restaurants", "", token, setData);
+    requestData("get", "active-order", "", token, setOrder);
   }, []);
 
   const getData = data?.restaurants?.map((item) => {
@@ -49,7 +51,7 @@ export default function HomePage() {
   });
   return (
     <div>
-      <Header title={"Ifuture"} />
+      <Header title={search === "" ? ("Ifuture") : ("Busca")} />
       <InputSearch>
         <TextField
           id="input-with-icon-textfield"
@@ -79,9 +81,10 @@ export default function HomePage() {
       <CardContainer>
         {filteredRestaurants?.length === 0 && <Msg> {"Não encontramos :("} </Msg>}
         {getData}
-        {console.log(getData)}
       </CardContainer>
-      <PopUpOrder />
+      {order?.order && 
+      <PopUpOrder order={order}/>
+    }
       <Footer page={"home"} />
     </div>
   );
