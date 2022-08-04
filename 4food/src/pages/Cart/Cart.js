@@ -16,6 +16,10 @@ import {
   TitleRes,
   CardCart,
   BtnConfirm,
+  Shipping,
+  TotalPrice,
+  Payment,
+  TotalPriceValue,
 } from "./styled";
 import { requestData } from "../../services/requestAPI";
 import { GlobalContext } from "../../global/GlobalContext";
@@ -47,9 +51,9 @@ export default function Cart() {
   useEffect(() => {
     requestData("get", "profile/address", "", token, setData);
     if (order) {
-      setCart({ 
-        restaurant: {}, 
-        products: [] 
+      setCart({
+        restaurant: {},
+        products: [],
       });
       Swal.fire({
         icon: "success",
@@ -60,10 +64,16 @@ export default function Cart() {
     }
   }, [order]);
 
-  console.log(order);
   const arrayProducts = cart?.products?.map((item) => {
     return { id: item.id, quantity: item.quantity };
   });
+
+  let totalPrice = cart.restaurant.shipping;
+  for (const product of cart.products) {
+    totalPrice += product.price * product.quantity;
+  }
+
+  console.log("cart", cart);
   return (
     <>
       <Header title={"Meu carrinho"} />
@@ -90,58 +100,67 @@ export default function Cart() {
               <DetailCard
                 key={item.id}
                 product={item}
+                page={"cart"}
                 restaurant={cart?.restaurant}
               />
             );
           })}
         </CardCart>
+        <Shipping>Frete R$ {cart?.restaurant?.shipping?.toFixed(2)}</Shipping>
+        <TotalPrice>
+          SUBTOTAL
+          <TotalPriceValue>
+            R${totalPrice?.toFixed(2).replace(".", ",")}
+          </TotalPriceValue>
+        </TotalPrice>
+        <Payment>
+          <FormControl fullWidth>
+            <FormLabel
+              id="demo-radio-buttons-group-label"
+              sx={{ color: "black", borderBottom: 1, width: "90%" }}
+            >
+              Forma de Pagamento
+            </FormLabel>
 
-        <FormControl fullWidth>
-          <FormLabel
-            id="demo-radio-buttons-group-label"
-            sx={{ color: "black", borderBottom: 1, width: "90%" }}
-          >
-            Forma de Pagamento
-          </FormLabel>
-
-          <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="money"
-            name="radio-buttons-group"
-            onChange={(event) => {
-              setRadio(event.target.value);
-            }}
-          >
-            <FormControlLabel
-              value="money"
-              control={
-                <Radio
-                  sx={{
-                    color: grey[900],
-                    "&.Mui-checked": {
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue="money"
+              name="radio-buttons-group"
+              onChange={(event) => {
+                setRadio(event.target.value);
+              }}
+            >
+              <FormControlLabel
+                value="money"
+                control={
+                  <Radio
+                    sx={{
                       color: grey[900],
-                    },
-                  }}
-                />
-              }
-              label="Dinheiro"
-            />
-            <FormControlLabel
-              value="creditcard"
-              control={
-                <Radio
-                  sx={{
-                    color: grey[900],
-                    "&.Mui-checked": {
+                      "&.Mui-checked": {
+                        color: grey[900],
+                      },
+                    }}
+                  />
+                }
+                label="Dinheiro"
+              />
+              <FormControlLabel
+                value="creditcard"
+                control={
+                  <Radio
+                    sx={{
                       color: grey[900],
-                    },
-                  }}
-                />
-              }
-              label="Cartão"
-            />
-          </RadioGroup>
-        </FormControl>
+                      "&.Mui-checked": {
+                        color: grey[900],
+                      },
+                    }}
+                  />
+                }
+                label="Cartão"
+              />
+            </RadioGroup>
+          </FormControl>
+        </Payment>
         <BtnConfirm onClick={submitLogin}>Confirmar</BtnConfirm>
       </ContainerCart>
       <Space />

@@ -43,3 +43,29 @@ export const CardCart = styled.div``;
 export const BtnConfirm = styled(ButtonLogin)`
   bottom: 4.062rem;
 `;
+
+export const Shipping = styled.p`
+  text-align: right;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 1rem 1.5rem;
+`;
+export const TotalPrice = styled.div`
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+`;
+
+export const TotalPriceValue = styled.p`
+  color: #e8222e;
+  font-size: 1.125rem;
+  font-weight: bold;
+`;
+
+export const Payment = styled.div`
+  padding-left: 1.5rem;
+`
