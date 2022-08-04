@@ -22,5 +22,11 @@ export const FilterCategory = styled.div`
     width: 6px;
     background-color: transparent;
   }
-
+`;
+export const Msg = styled.p`
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  letter-spacing: -0.39px;
+  text-align: center;
+  color: #000;
 `;

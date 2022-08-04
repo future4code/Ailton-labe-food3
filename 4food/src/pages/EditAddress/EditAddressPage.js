@@ -36,7 +36,6 @@ export default function EditAddressPage() {
             requestData("get", "profile/address", "", token, setData);
         }
     }, [data]);
-    console.log(data);
 
     useEffect(() => {
         if (edit) {
@@ -58,6 +57,7 @@ export default function EditAddressPage() {
                     value={form.street}
                     onChange={handleInputChange}
                     label={"Logradouro"}
+                    placeholder={"Rua / Av."}
                     variant={"outlined"}
                     fullWidth
                     margin="normal"
@@ -73,6 +73,7 @@ export default function EditAddressPage() {
                     value={form.number}
                     onChange={handleInputChange}
                     label={"Número"}
+                    placeholder={"Número"}
                     variant={"outlined"}
                     fullWidth
                     margin="normal"
@@ -87,6 +88,7 @@ export default function EditAddressPage() {
                     value={form.complement}
                     onChange={handleInputChange}
                     label={"Complemento"}
+                    placeholder={"Apto. / Bloco"}
                     variant={"outlined"}
                     fullWidth
                     margin="normal"
@@ -100,6 +102,7 @@ export default function EditAddressPage() {
                     value={form.neighbourhood}
                     onChange={handleInputChange}
                     label={"Bairro"}
+                    placeholder={"Bairro"}
                     variant={"outlined"}
                     fullWidth
                     margin="normal"
@@ -114,6 +117,7 @@ export default function EditAddressPage() {
                     value={form.city}
                     onChange={handleInputChange}
                     label={"Cidade"}
+                    placeholder={"Cidade"}
                     variant={"outlined"}
                     fullWidth
                     margin="normal"
@@ -128,6 +132,7 @@ export default function EditAddressPage() {
                     value={form.state}
                     onChange={handleInputChange}
                     label={"Estado"}
+                    placeholder={"Estado"}
                     variant={"outlined"}
                     fullWidth
                     margin="normal"

@@ -15,8 +15,10 @@ import {
   Img,
 } from "./styled";
 import { goToPage } from "../../routes/coordinator";
+import { useProtectPage } from "../../hooks/useProtectPage";
 
 export default function ProfilePage() {
+  useProtectPage();
   const [data, setData] = useState();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -24,7 +26,6 @@ export default function ProfilePage() {
   useEffect(() => {
     requestData("get", "profile", "", token, setData);
   }, []);
-  console.log(data);
 
   return (
     <div>

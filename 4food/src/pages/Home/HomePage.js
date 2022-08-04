@@ -3,7 +3,7 @@ import { useProtectPage } from "../../hooks/useProtectPage";
 import Header from "../../component/Header/Header";
 import { requestData } from "../../services/requestAPI";
 import CardHome from "../../component/CardHome/CardHome";
-import { CardContainer, InputSearch, FilterCategory } from "./styled";
+import { CardContainer, InputSearch, FilterCategory, Msg } from "./styled";
 import InputAdornment from "@mui/material/InputAdornment";
 import Search from "../../assets/img/search.png";
 import TextField from "@mui/material/TextField";
@@ -14,7 +14,8 @@ import CategorySelected from "../../component/CategorySelected/CategorySelected"
 export default function HomePage() {
   useProtectPage();
   const [data, setData] = useState("");
-  const [select, setSelect] = useState();
+  const [select, setSelect] = useState("Todos");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -22,8 +23,19 @@ export default function HomePage() {
   }, []);
 
   const getData = data?.restaurants?.map((item) => {
-    return <CardHome item={item} key={item.id} />;
+    if (
+      item.name.toLowerCase().includes(search.toLowerCase()) &&
+      (item.category === select || "Todos" === select)
+    ) {
+      return <CardHome item={item} key={item.id} />;
+    }
   });
+
+  const filteredRestaurants = getData?.filter((item) => {
+    if(item !== undefined) {
+      return item
+    }
+  })
 
   const getCategory = data?.restaurants?.map((item) => {
     return (
@@ -44,6 +56,8 @@ export default function HomePage() {
           variant="outlined"
           placeholder="Restaurantes"
           fullWidth
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -53,8 +67,20 @@ export default function HomePage() {
           }}
         />
       </InputSearch>
-      <FilterCategory>{getCategory}</FilterCategory>
-      <CardContainer>{getData}</CardContainer>
+      <FilterCategory>
+        <CategorySelected
+          key={Date.now}
+          category={{ category: "Todos" }}
+          select={select}
+          setSelect={setSelect}
+        />
+        {getCategory}
+      </FilterCategory>
+      <CardContainer>
+        {filteredRestaurants?.length === 0 && <Msg> {"Não encontramos :("} </Msg>}
+        {getData}
+        {console.log(getData)}
+      </CardContainer>
       <PopUpOrder />
       <Footer page={"home"} />
     </div>

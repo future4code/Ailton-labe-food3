@@ -4,7 +4,7 @@ import { useForm } from "../../hooks/useForm";
 import { goToPage } from "../../routes/coordinator";
 import { requestData } from "../../services/requestAPI";
 import { useNavigate } from "react-router-dom";
-
+import { useProtectPage } from "../../hooks/useProtectPage";
 import {
   Container,
   DivTitle,
@@ -14,6 +14,7 @@ import {
 } from "../../global/GeneralStyled";
 
 export default function AddressPage() {
+  useProtectPage();
   const navigate = useNavigate();
   const [data, setData] = useState("");
   const { form, handleInputChange, clear } = useForm({
@@ -27,7 +28,6 @@ export default function AddressPage() {
 
   useEffect(() => {
     if (!!data) {
-      console.log("DataAddress", data);
       localStorage.setItem("token", data.token);
       goToPage(navigate, "/");
     }
@@ -38,7 +38,6 @@ export default function AddressPage() {
     const token = localStorage.getItem("token");
     requestData("put", "address", form, token, setData);
   };
-  console.log("testeForm", form);
   return (
     <Container>
       <DivTitle>
@@ -50,6 +49,7 @@ export default function AddressPage() {
           value={form.street}
           onChange={handleInputChange}
           label={"Logradouro"}
+          placeholder={"Rua / Av."}
           variant={"outlined"}
           fullWidth
           margin="normal"
@@ -65,6 +65,7 @@ export default function AddressPage() {
           value={form.number}
           onChange={handleInputChange}
           label={"Número"}
+          placeholder={"Número"}
           variant={"outlined"}
           fullWidth
           margin="normal"
@@ -79,6 +80,7 @@ export default function AddressPage() {
           value={form.complement}
           onChange={handleInputChange}
           label={"Complemento"}
+          placeholder={"Apto. / Bloco"}
           variant={"outlined"}
           fullWidth
           margin="normal"
@@ -93,6 +95,7 @@ export default function AddressPage() {
           value={form.neighbourhood}
           onChange={handleInputChange}
           label={"Bairro"}
+          placeholder={"Bairro"}
           variant={"outlined"}
           fullWidth
           margin="normal"
@@ -107,6 +110,7 @@ export default function AddressPage() {
           value={form.city}
           onChange={handleInputChange}
           label={"Cidade"}
+          placeholder={"Cidade"}
           variant={"outlined"}
           fullWidth
           margin="normal"
@@ -121,6 +125,7 @@ export default function AddressPage() {
           value={form.state}
           onChange={handleInputChange}
           label={"Estado"}
+          placeholder={"Estado"}
           variant={"outlined"}
           fullWidth
           margin="normal"

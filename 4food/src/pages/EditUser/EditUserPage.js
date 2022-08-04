@@ -29,7 +29,6 @@ export default function EditUserPage() {
             requestData("get", "profile", "", token, setData);
         }
     }, [data]);
-    console.log(data);
 
     useEffect(() => {
         if (edit) {
@@ -51,6 +50,7 @@ export default function EditUserPage() {
                     value={form.name}
                     onChange={handleInputChange}
                     label={"Nome"}
+                    placeholder={"Nome"}
                     variant={"outlined"}
                     fullWidth
                     margin="normal"
@@ -66,6 +66,7 @@ export default function EditUserPage() {
                     value={form.email}
                     onChange={handleInputChange}
                     label={"E-Mail"}
+                    placeholder={"email@email.com"}
                     variant={"outlined"}
                     fullWidth
                     margin="normal"
@@ -81,6 +82,7 @@ export default function EditUserPage() {
                     value={form.cpf}
                     onChange={handleInputChange}
                     label={"CPF"}
+                    placeholder={"000.000.000-00"}
                     variant={"outlined"}
                     fullWidth
                     margin="normal"

@@ -5,19 +5,22 @@ import { useForm } from "../../hooks/useForm";
 import { goToPage } from "../../routes/coordinator";
 import { requestData } from "../../services/requestAPI";
 import { useNavigate } from "react-router-dom";
-
+import { useUnprotectPage } from "../../hooks/useUnprotectPage";
+import Header from "../../component/Header/Header";
+import { Logo } from "./styled";
 import {
   Container,
   DivTitle,
   Form,
   ImgLogo,
   Title,
-  ButtonLogin
+  ButtonLogin,
 } from "../../global/GeneralStyled";
 
 export default function SignUpPage() {
-  const navigate = useNavigate()
-  const[passwordConfirm, setPasswordConfirm] = useState("")
+  useUnprotectPage();
+  const navigate = useNavigate();
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [data, setData] = useState("");
 
   const { form, handleInputChange, clear } = useForm({
@@ -28,12 +31,11 @@ export default function SignUpPage() {
   });
 
   const onChangePasswordConfirm = (event) => {
-    setPasswordConfirm(event.target.value)
-  }
+    setPasswordConfirm(event.target.value);
+  };
 
   useEffect(() => {
     if (!!data) {
-      console.log(data);
       localStorage.setItem("token", data.token);
       if (!!data.user.hasAddress) {
         goToPage(navigate, "/");
@@ -45,16 +47,17 @@ export default function SignUpPage() {
 
   const submitSignUp = (event) => {
     event.preventDefault();
-    if(form.password === passwordConfirm){
+    if (form.password === passwordConfirm) {
       requestData("post", "signup", form, "", setData);
     } else {
-      alert('Algo deu errado!')
+      alert("Algo deu errado!");
     }
-  }
+  };
 
   return (
     <Container>
-      <ImgLogo src={LogoIFuture} />
+      <Header />
+      <Logo src={LogoIFuture} />
       <DivTitle>
         <Title>Cadastrar</Title>
       </DivTitle>
@@ -64,6 +67,7 @@ export default function SignUpPage() {
           value={form.name}
           onChange={handleInputChange}
           label={"Nome"}
+          placeholder={"Nome e sobrenome"}
           variant={"outlined"}
           fullWidth
           margin="normal"
@@ -79,6 +83,7 @@ export default function SignUpPage() {
           value={form.email}
           onChange={handleInputChange}
           label={"E-Mail"}
+          placeholder={"email@email.com"}
           variant={"outlined"}
           fullWidth
           margin="normal"
@@ -94,6 +99,7 @@ export default function SignUpPage() {
           value={form.cpf}
           onChange={handleInputChange}
           label={"CPF"}
+          placeholder={"000.000.000-00"}
           variant={"outlined"}
           fullWidth
           margin="normal"
@@ -109,6 +115,9 @@ export default function SignUpPage() {
           value={form.password}
           onChange={handleInputChange}
           label={"Senha"}
+          pattern={"^.{6,}"}
+          title={"Senha deve conter no mínimo 6 caracteres"}
+          placeholder={"Mínimo 6 caracteres"}
           variant={"outlined"}
           fullWidth
           margin="normal"
@@ -124,6 +133,9 @@ export default function SignUpPage() {
           value={passwordConfirm}
           onChange={onChangePasswordConfirm}
           label={"Confirmar Senha"}
+          placeholder={"Confirme a senha anterior"}
+          pattern={"^.{6,}"}
+          title={"Senha deve conter no mínimo 6 caracteres"}
           variant={"outlined"}
           fullWidth
           margin="normal"
