@@ -27,6 +27,8 @@ export default function AddressPage() {
 
   useEffect(() => {
     if (!!data) {
+      console.log("DataAddress", data);
+      localStorage.setItem("token", data.token);
       goToPage(navigate, "/");
     }
   }, [data]);
@@ -36,7 +38,7 @@ export default function AddressPage() {
     const token = localStorage.getItem("token");
     requestData("put", "address", form, token, setData);
   };
-
+  console.log("testeForm", form);
   return (
     <Container>
       <DivTitle>
