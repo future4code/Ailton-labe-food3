@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import LogoIFuture from "../../assets/img/logo.png";
-import { TextField, CircularProgress, OutlinedInput } from "@mui/material";
+import {
+  TextField,
+  CircularProgress,
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
 import { useForm } from "../../hooks/useForm";
 import { goToPage } from "../../routes/coordinator";
 import { requestData } from "../../services/requestAPI";
@@ -15,7 +23,10 @@ import {
   ImgLogo,
   Title,
   ButtonLogin,
+  ErrorText,
 } from "../../global/GeneralStyled";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+import { grey, pink } from "@mui/material/colors";
 
 export default function SignUpPage() {
   useUnprotectPage();
@@ -29,6 +40,15 @@ export default function SignUpPage() {
     cpf: "",
     password: "",
   });
+
+  const [values, setValues] = useState({
+    password: false,
+    passwordConfirm: false,
+  });
+
+  const handleClickShowPassword = (name) => {
+    setValues({ ...values, [name]: !values[name] });
+  };
 
   const onChangePasswordConfirm = (event) => {
     setPasswordConfirm(event.target.value);
@@ -53,7 +73,6 @@ export default function SignUpPage() {
       // alert("Algo deu errado!");
     }
   };
-
   return (
     <Container>
       <Header />
@@ -110,42 +129,85 @@ export default function SignUpPage() {
             mb: "1rem",
           }}
         />
-        <TextField
-          name={"password"}
-          value={form.password}
-          onChange={handleInputChange}
-          label={"Senha"}
-          pattern={"^.{6,}"}
-          placeholder={"Mínimo 6 caracteres"}
-          variant={"outlined"}
+        <FormControl
+          variant="outlined"
           fullWidth
-          margin="normal"
-          required
-          type={"password"}
           sx={{
             m: 0,
             mb: "1rem",
           }}
-          helperText={'Senha deve conter no mínimo 6 caracteres'}
-        />
-        <TextField
-          name={"passwordConfirm"}
-          value={passwordConfirm}
-          onChange={onChangePasswordConfirm}
-          label={"Confirmar Senha"}
-          placeholder={"Confirme a senha anterior"}
-          pattern={"^.{6,}"}
-          variant={"outlined"}
+        >
+          <InputLabel>Senha</InputLabel>
+          <OutlinedInput
+            name={"password"}
+            value={form.password}
+            onChange={handleInputChange}
+            label="Senha"
+            pattern={"^.{6,}"}
+            variant={"outlined"}
+            fullWidth
+            margin="dense"
+            required
+            type={values.password ? "text" : "password"}
+            sx={{
+              m: 0,
+            }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  onClick={() => handleClickShowPassword("password")}
+                  edge="end"
+                >
+                  {values.password ? <MdVisibility /> : <MdVisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+        <FormControl
+          variant="outlined"
           fullWidth
-          margin="normal"
-          required
-          type={"password"}
           sx={{
             m: 0,
             mb: "1rem",
           }}
-          helperText={'Deve ser a mesma que a anterior'}
-        />
+        >
+          <InputLabel>Confirmar Senha</InputLabel>
+          <OutlinedInput
+            id="outlined-error-helper-text"
+            name={"passwordConfirm"}
+            value={passwordConfirm}
+            onChange={onChangePasswordConfirm}
+            label={"Confirmar Senha"}
+            pattern={"^.{6,}"}
+            variant={"outlined"}
+            fullWidth
+            margin="dense"
+            sx={{
+              m: 0,
+            }}
+            required
+            type={values.passwordConfirm ? "text" : "password"}
+            error={form.password !== passwordConfirm && passwordConfirm !== ""}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  onClick={() => handleClickShowPassword("passwordConfirm")}
+                  edge="end"
+                >
+                  {values.passwordConfirm ? (
+                    <MdVisibility />
+                  ) : (
+                    <MdVisibilityOff />
+                  )}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+          {form.password !== passwordConfirm && passwordConfirm !== "" && (
+            <ErrorText>Deve ser a mesma que a anterior</ErrorText>
+          )}
+        </FormControl>
         <ButtonLogin>Criar</ButtonLogin>
       </Form>
     </Container>
