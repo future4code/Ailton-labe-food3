@@ -46,6 +46,15 @@ export const Form = styled.form`
   padding: 0 1rem;
 `;
 
+export const ErrorText = styled.p`
+  margin-top: 0.3rem;
+  margin-left: 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 0.75rem;
+  color: #e02020;
+`
+
 export const ButtonLogin = styled.button`
   display: flex;
   justify-content: center;
