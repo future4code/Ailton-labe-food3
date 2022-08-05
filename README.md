@@ -17,7 +17,7 @@ Projeto Final do módulo Frontend da instituição Labenu, a proposta é uma apl
 <h2 id="sobre"> ✔O que funciona </h2>
 
 - Login 
-   - Na tela de login utilizando um email e uma senha cadastrada o usuário consegue ter acesso às páginas da aplicação com proteções de autenticações
+   - Na tela de login utilizando um e-mail e uma senha cadastrada o usuário consegue ter acesso às páginas da aplicação com proteções de autenticações
 - Cadastro
    - Efetua o cadastro de um novo usuário para adquirir uma autenticação 
    - Após o cadastro o usuário é encaminhado para registrar o endereço de entrega do delivery
@@ -31,13 +31,16 @@ Projeto Final do módulo Frontend da instituição Labenu, a proposta é uma apl
 - Restaurante: 
    - O usuário visualiza às informações do restaurante 
    - Adiciona ou remove os produtos do carrinho clicando nos botões
+   - É possível selecionar a quantidade de cada item vendido no restaurante
+   - Só é possivel adicionar no carrinho itens do mesmo restaurante
 - Carrinho: 
-   - Na página do carrinho é possivel ver todos osprodutos adicionados
-   - É possivel remover ou continuar o processo de compra, escolhendo a forma de pagamento e confirmando a compra
+   - Na página do carrinho é possivel ver todos os produtos adicionados
+   - É possivel remover ou continuar o processo, escolhendo a forma de pagamento e confirmando a compra
    - Após confirmação de compra o usuário só poderá fazer outro pedido após o tempo de entrega do restaurante atual
 - Perfil
-   - Esta é a página que acessa os dados do usuário podendo editar as informações de dados, login ou endereço
-   - Acesso ao histórico de pedidos finalizados;
+   - Esta é a página que acessa os dados do usuário podendo editar as informações de nome, e-mail, CPF e endereço
+   - Acesso ao histórico de pedidos finalizados
+   - E como funcionalidade extra adicionamos botão de logout
 - Footer
    - Navegação entre as três principais páginas clicando nos seus ícones
 
