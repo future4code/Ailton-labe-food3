@@ -24,14 +24,13 @@ export const Img = styled.img`
 
 export const Category = styled.span`
   color: #e8222e;
-  height: 1.8rem;
   margin: 0.5rem 0 0;
   padding: 0.5rem 1rem 0;
 `;
 export const Description = styled.span`
   width: 12.5rem;
   height: 1.875rem;
-  margin: 0 1rem 0.25rem;
+  margin: 0.3rem 1rem 0.25rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 0.75rem;

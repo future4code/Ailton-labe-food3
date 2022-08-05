@@ -13,6 +13,11 @@ export const CardInfo = styled(CardContent)`
   color: #b8b8b8;
 `;
 
+export const Space = styled.div`
+  height: 0.75rem;
+  width: 100%;
+`
+
 export const Title = styled.span`
   color: #e8222e;
   width: 18.5rem;

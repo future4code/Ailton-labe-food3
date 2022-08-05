@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import DetailCard from "../../component/DetailCard/DetailCard";
 import { useProtectPage } from "../../hooks/useProtectPage";
 import { requestData } from "../../services/requestAPI";
-import { Container, Space } from "../../global/GeneralStyled";
+import { Container, LoaderContainer, Space } from "../../global/GeneralStyled";
 import Header from "../../component/Header/Header";
 import { DetailsTitle, CardContainer, CardInfo, Title } from "./styled";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import { CardActionArea, CircularProgress } from "@mui/material";
 import { GlobalContext } from "../../global/GlobalContext";
 import Footer from "../../component/Footer/Footer";
 
@@ -58,6 +58,11 @@ export default function RestaurantDetailPage() {
     <Container>
       <Header title="Restaurante" />
       <CardContainer sx={{ boxShadow: 0, width: "20rem", mb: "0.5rem" }}>
+        {!data && (
+          <LoaderContainer>
+            <CircularProgress style={{ color: "red" }} />
+          </LoaderContainer>
+        )}
         {data && (
           <CardActionArea>
             <CardMedia

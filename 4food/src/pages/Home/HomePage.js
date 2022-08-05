@@ -10,11 +10,13 @@ import TextField from "@mui/material/TextField";
 import Footer from "../../component/Footer/Footer";
 import PopUpOrder from "../../component/PopUpOrder/PopUpOrder";
 import CategorySelected from "../../component/CategorySelected/CategorySelected";
+import { LoaderContainer, Space } from "../../global/GeneralStyled";
+import { CircularProgress } from "@mui/material";
 
 export default function HomePage() {
   useProtectPage();
   const [data, setData] = useState("");
-  const [order, setOrder] = useState("")
+  const [order, setOrder] = useState("");
   const [select, setSelect] = useState("Todos");
   const [search, setSearch] = useState("");
 
@@ -34,10 +36,10 @@ export default function HomePage() {
   });
 
   const filteredRestaurants = getData?.filter((item) => {
-    if(item !== undefined) {
-      return item
+    if (item !== undefined) {
+      return item;
     }
-  })
+  });
 
   const getCategory = data?.restaurants?.map((item) => {
     return (
@@ -51,7 +53,7 @@ export default function HomePage() {
   });
   return (
     <div>
-      <Header title={search === "" ? ("Ifuture") : ("Busca")} />
+      <Header title={search === "" ? "Ifuture" : "Busca"} />
       <InputSearch>
         <TextField
           id="input-with-icon-textfield"
@@ -78,13 +80,21 @@ export default function HomePage() {
         />
         {getCategory}
       </FilterCategory>
-      <CardContainer>
-        {filteredRestaurants?.length === 0 && <Msg> {"Não encontramos :("} </Msg>}
-        {getData}
-      </CardContainer>
-      {order?.order && 
-      <PopUpOrder order={order}/>
-    }
+      {!data && (
+        <LoaderContainer>
+          <CircularProgress style={{ color: "red" }} />
+        </LoaderContainer>
+      )}
+      {data && (
+        <CardContainer>
+          {filteredRestaurants?.length === 0 && (
+            <Msg> {"Não encontramos :("} </Msg>
+          )}
+          {getData}
+        </CardContainer>
+      )}
+      {order?.order && <PopUpOrder order={order} />}
+      <Space/>
       <Footer page={"home"} />
     </div>
   );

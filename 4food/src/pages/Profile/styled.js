@@ -18,6 +18,7 @@ export const Address = styled.div`
 export const History = styled.div`
   margin: 1rem 1rem 0.5rem;
 `;
+
 export const Img = styled.img`
   width: 1.5rem;
   height: 1.5rem;
