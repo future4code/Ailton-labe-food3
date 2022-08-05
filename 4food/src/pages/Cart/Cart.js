@@ -20,13 +20,16 @@ import {
   TotalPrice,
   Payment,
   TotalPriceValue,
+  BtnConfirmDisable,
+  CartEmpty,
 } from "./styled";
 import { requestData } from "../../services/requestAPI";
 import { GlobalContext } from "../../global/GlobalContext";
 import { useProtectPage } from "../../hooks/useProtectPage";
 import Swal from "sweetalert2";
 import DetailCard from "../../component/DetailCard/DetailCard";
-import { Space } from "../../global/GeneralStyled";
+import { LoaderContainer, Space } from "../../global/GeneralStyled";
+import { CircularProgress } from "@mui/material";
 
 export default function Cart() {
   useProtectPage();
@@ -55,6 +58,13 @@ export default function Cart() {
         restaurant: {},
         products: [],
       });
+      localStorage.setItem(
+        "cart",
+        JSON.stringify({
+          restaurant: {},
+          products: [],
+        })
+      );
       Swal.fire({
         icon: "success",
         title: "",
@@ -73,96 +83,119 @@ export default function Cart() {
     totalPrice += product.price * product.quantity;
   }
 
-  console.log("cart", cart);
   return (
     <>
       <Header title={"Meu carrinho"} />
-      <ContainerCart>
-        <AddressUserCart>
-          <InfoCart>Endereço de entrega</InfoCart>
-          <Address>
-            {data?.address?.street}, {data?.address?.number} -{" "}
-            {data?.address?.neighbourhood}
-          </Address>
-        </AddressUserCart>
-        <AddressRestaurantCart>
-          <TitleRes>{cart.restaurant.name}</TitleRes>
-          <InfoCart>{cart.restaurant.address}</InfoCart>
-          <InfoCart>
-            {cart.restaurant.deliveryTime - 10} - {cart.restaurant.deliveryTime}
-            min
-          </InfoCart>
-        </AddressRestaurantCart>
+      {!data && (
+        <LoaderContainer>
+          <CircularProgress style={{ color: "red" }} />
+        </LoaderContainer>
+      )}
+      {data && (
+        <ContainerCart>
+          <AddressUserCart>
+            <InfoCart>Endereço de entrega</InfoCart>
+            <Address>
+              {data?.address?.street}, {data?.address?.number} -{" "}
+              {data?.address?.neighbourhood}
+            </Address>
+          </AddressUserCart>
+          {cart?.products?.length === 0 && (
+            <CartEmpty>Carrinho vazio</CartEmpty>
+          )}
+          {cart?.products?.length > 0 && (
+            <>
+              <AddressRestaurantCart>
+                <TitleRes>{cart.restaurant.name}</TitleRes>
+                <InfoCart>{cart.restaurant.address}</InfoCart>
+                <InfoCart>
+                  {cart.restaurant.deliveryTime - 10} -{" "}
+                  {cart.restaurant.deliveryTime}
+                  min
+                </InfoCart>
+              </AddressRestaurantCart>
+              <CardCart>
+                {cart?.products?.map((item) => {
+                  return (
+                    <DetailCard
+                      key={item.id}
+                      product={item}
+                      page={"cart"}
+                      restaurant={cart?.restaurant}
+                    />
+                  );
+                })}
+              </CardCart>
+            </>
+          )}
+          <Shipping>
+            Frete R$
+            {cart?.restaurant?.shipping
+              ? cart?.restaurant?.shipping?.toFixed(2)
+              : "0,00"}
+          </Shipping>
+          <TotalPrice>
+            SUBTOTAL
+            <TotalPriceValue>
+              R${totalPrice ? totalPrice?.toFixed(2).replace(".", ",") : "0,00"}
+            </TotalPriceValue>
+          </TotalPrice>
+          <Payment>
+            <FormControl fullWidth>
+              <FormLabel
+                id="demo-radio-buttons-group-label"
+                sx={{ color: "black", borderBottom: 1, width: "90%" }}
+              >
+                Forma de Pagamento
+              </FormLabel>
 
-        <CardCart>
-          {cart?.products?.map((item) => {
-            return (
-              <DetailCard
-                key={item.id}
-                product={item}
-                page={"cart"}
-                restaurant={cart?.restaurant}
-              />
-            );
-          })}
-        </CardCart>
-        <Shipping>Frete R$ {cart?.restaurant?.shipping?.toFixed(2)}</Shipping>
-        <TotalPrice>
-          SUBTOTAL
-          <TotalPriceValue>
-            R${totalPrice?.toFixed(2).replace(".", ",")}
-          </TotalPriceValue>
-        </TotalPrice>
-        <Payment>
-          <FormControl fullWidth>
-            <FormLabel
-              id="demo-radio-buttons-group-label"
-              sx={{ color: "black", borderBottom: 1, width: "90%" }}
-            >
-              Forma de Pagamento
-            </FormLabel>
-
-            <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="money"
-              name="radio-buttons-group"
-              onChange={(event) => {
-                setRadio(event.target.value);
-              }}
-            >
-              <FormControlLabel
-                value="money"
-                control={
-                  <Radio
-                    sx={{
-                      color: grey[900],
-                      "&.Mui-checked": {
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="money"
+                name="radio-buttons-group"
+                onChange={(event) => {
+                  setRadio(event.target.value);
+                }}
+              >
+                <FormControlLabel
+                  value="money"
+                  control={
+                    <Radio
+                      sx={{
                         color: grey[900],
-                      },
-                    }}
-                  />
-                }
-                label="Dinheiro"
-              />
-              <FormControlLabel
-                value="creditcard"
-                control={
-                  <Radio
-                    sx={{
-                      color: grey[900],
-                      "&.Mui-checked": {
+                        "&.Mui-checked": {
+                          color: grey[900],
+                        },
+                      }}
+                    />
+                  }
+                  label="Dinheiro"
+                />
+                <FormControlLabel
+                  value="creditcard"
+                  control={
+                    <Radio
+                      sx={{
                         color: grey[900],
-                      },
-                    }}
-                  />
-                }
-                label="Cartão"
-              />
-            </RadioGroup>
-          </FormControl>
-        </Payment>
-        <BtnConfirm onClick={submitLogin}>Confirmar</BtnConfirm>
-      </ContainerCart>
+                        "&.Mui-checked": {
+                          color: grey[900],
+                        },
+                      }}
+                    />
+                  }
+                  label="Cartão"
+                />
+              </RadioGroup>
+            </FormControl>
+          </Payment>
+          {cart?.products?.length > 0 && (
+            <BtnConfirm onClick={submitLogin}>Confirmar</BtnConfirm>
+          )}
+          {cart?.products?.length === 0 && (
+            <BtnConfirmDisable>Confirmar</BtnConfirmDisable>
+          )}
+        </ContainerCart>
+      )}
       <Space />
       <Footer page={"cart"} />
     </>

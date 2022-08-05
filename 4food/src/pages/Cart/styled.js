@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { ButtonLogin } from "../../global/GeneralStyled";
 
-export const ContainerCart = styled.div``;
+export const ContainerCart = styled.div`
+  position: relative;
+`;
 
 export const AddressUserCart = styled.div`
   height: 4.75rem;
@@ -40,8 +42,22 @@ export const AddressRestaurantCart = styled.div`
   justify-content: center;
 `;
 export const CardCart = styled.div``;
+
 export const BtnConfirm = styled(ButtonLogin)`
-  bottom: 4.062rem;
+  width: 20.5rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+`;
+
+export const BtnConfirmDisable = styled(BtnConfirm)`
+  background-color: rgba(232, 34, 46, 0.5);
+  position: fixed;
+  bottom: 4rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Shipping = styled.p`
@@ -68,4 +84,14 @@ export const TotalPriceValue = styled.p`
 
 export const Payment = styled.div`
   padding-left: 1.5rem;
-`
+`;
+
+export const CartEmpty = styled.p`
+  margin-top: 1.5rem;
+  margin-bottom: 2.813rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  letter-spacing: -0.39px;
+  text-align: center;
+`;

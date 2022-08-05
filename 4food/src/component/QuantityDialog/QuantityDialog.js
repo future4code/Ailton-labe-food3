@@ -8,8 +8,6 @@ import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { DialogContainer } from "./styled";
-// import { goToPage } from "../../routes/coordinator";
-// import { useNavigate } from "react-router-dom";
 import { InputLabel } from "@mui/material";
 
 export default function QuantityDialog({
@@ -19,9 +17,7 @@ export default function QuantityDialog({
   qntProduct,
   setConfirmAdd
 }) {
-  // const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState();
 
   useEffect(() => {
     setOpen(openButton);

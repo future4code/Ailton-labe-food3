@@ -15,6 +15,10 @@ export const PriceHistory = styled(Price)`
   width: 100%;
 `;
 
+export const Month = styled.span`
+  text-transform: capitalize;
+`
+
 export const DescriptionDate = styled(Description)`
   color: #000;
   display: flex;

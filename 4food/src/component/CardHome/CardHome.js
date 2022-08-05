@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { goToPage } from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
-import { CardContainer, CardInfo, Title } from "./styled";
+import { CardContainer, CardInfo, Space, Title } from "./styled";
 
 export default function CardHome({ item }) {
   const navigate = useNavigate();
@@ -21,6 +21,7 @@ export default function CardHome({ item }) {
           image={item.logoUrl}
           alt={item.name}
         />
+        <Space/>
         <Title>{item.name}</Title>
         <CardInfo>
           <Typography variant="body2" color="text.secondary">

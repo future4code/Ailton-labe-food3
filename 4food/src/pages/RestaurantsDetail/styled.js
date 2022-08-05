@@ -9,7 +9,8 @@ export const CardContainer = styled(Card)`
 export const CardInfo = styled(CardContent)`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  gap: 2.5rem;
+  /* justify-content: space-between; */
   color: #b8b8b8;
   padding: 16px 0;
 `;
@@ -30,7 +31,6 @@ export const Title = styled.span`
 `;
 
 export const DetailsTitle = styled.p`
-  /* margin-left: 1.5rem; */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1rem;

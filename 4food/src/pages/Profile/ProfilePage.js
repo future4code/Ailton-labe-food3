@@ -16,20 +16,28 @@ import {
 } from "./styled";
 import { goToPage } from "../../routes/coordinator";
 import { useProtectPage } from "../../hooks/useProtectPage";
+import { LoaderContainer, Space } from "../../global/GeneralStyled";
+import { CircularProgress } from "@mui/material";
 
 export default function ProfilePage() {
   useProtectPage();
   const [data, setData] = useState();
+  const [history, setHistory] = useState();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     requestData("get", "profile", "", token, setData);
+    requestData("get", "orders/history", "", token, setHistory);
   }, []);
-
   return (
     <div>
       <Header title={"Meu perfil"} />
+      {!data && (
+        <LoaderContainer>
+          <CircularProgress style={{ color: "red" }} />
+        </LoaderContainer>
+      )}
       {data && (
         <>
           <InfoUser>
@@ -41,7 +49,7 @@ export default function ProfilePage() {
             <Img
               src={Edit}
               alt="edit"
-              onClick={() => goToPage(navigate, '/edituser')}
+              onClick={() => goToPage(navigate, "/edituser")}
             />
           </InfoUser>
           <Address>
@@ -52,13 +60,16 @@ export default function ProfilePage() {
             <Img
               src={Edit}
               alt="edit"
-              onClick={() => goToPage(navigate, '/editaddress')}
+              onClick={() => goToPage(navigate, "/editaddress")}
             />
           </Address>
           <History>
             <InfoHistory>Histórico do pedidos</InfoHistory>
-            <HistoryCard />
-            <HistoryCard />
+            {history &&
+              history?.orders?.map((item, index) => {
+                return <HistoryCard key={index} history={item} />;
+              })}
+            <Space />
           </History>
         </>
       )}

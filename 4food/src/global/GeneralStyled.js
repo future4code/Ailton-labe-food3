@@ -20,6 +20,13 @@ export const DivTitle = styled.div`
   padding: 0.75rem 2rem;
 `;
 
+export const LoaderContainer = styled.div`
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Title = styled.p`
   width: 18.5rem;
   height: 1.125rem;

@@ -26,9 +26,11 @@ import { goToPage } from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
 import { requestData } from "../../services/requestAPI";
 import { useUnprotectPage } from "../../hooks/useUnprotectPage";
+import Loading from "../../component/Loading/Loading";
 
 export default function LoginPage() {
   useUnprotectPage();
+  const [load, setLoad] = useState(true);
   const { form, handleInputChange, clear } = useForm({
     email: "",
     password: "",
@@ -50,6 +52,9 @@ export default function LoginPage() {
   };
 
   useEffect(() => {
+    setTimeout(() => {
+      setLoad(false)
+    }, 2000);
     if (!!data) {
       localStorage.setItem("token", data.token);
       if (!!data.user.hasAddress) {
@@ -66,66 +71,79 @@ export default function LoginPage() {
   };
 
   return (
-    <Container>
-      <ImgLogo src={LogoIFuture} />
-      <DivTitle>
-        <Title>Entrar</Title>
-      </DivTitle>
-      <Form onSubmit={submitLogin}>
-        <TextField
-          name={"email"}
-          value={form.email}
-          onChange={handleInputChange}
-          label={"E-Mail"}
-          placeholder={"email@email.com"}
-          variant={"outlined"}
-          fullWidth
-          margin="normal"
-          required
-          type={"email"}
-          sx={{
-            m: 0,
-            mt: "0.75rem",
-            mb: "1rem",
-          }}
-        />
-        <FormControl variant="outlined" fullWidth sx={{
-          m: 0,
-          mb: "1rem",
-        }}>
-          <InputLabel>Senha</InputLabel>
-          <OutlinedInput
-            id={"password"}
-            name={"password"}
-            value={form.password}
-            onChange={handleInputChange}
-            variant="outlined"
-            pattern={"^.{6,}"}
-            title={"Senha deve conter no mínimo 6 caracteres"}
-            label="Senha"
-            placeholder={"Mínimo 6 caracteres"}
-            type={values.showPassword ? "text" : "password"}
-            required
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton onClick={handleClickShowPassword} edge="end">
-                  {values.showPassword ? <MdVisibility /> : <MdVisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControl>
+    <>
+      {load && <Loading />}
+      {!load && (
+        <Container>
+          <ImgLogo src={LogoIFuture} />
+          <DivTitle>
+            <Title>Entrar</Title>
+          </DivTitle>
+          <Form onSubmit={submitLogin}>
+            <TextField
+              name={"email"}
+              value={form.email}
+              onChange={handleInputChange}
+              label={"E-Mail"}
+              placeholder={"email@email.com"}
+              variant={"outlined"}
+              fullWidth
+              margin="normal"
+              required
+              type={"email"}
+              sx={{
+                m: 0,
+                mt: "0.75rem",
+                mb: "1rem",
+              }}
+            />
+            <FormControl
+              variant="outlined"
+              fullWidth
+              sx={{
+                m: 0,
+                mb: "1rem",
+              }}
+            >
+              <InputLabel>Senha</InputLabel>
+              <OutlinedInput
+                id={"password"}
+                name={"password"}
+                value={form.password}
+                onChange={handleInputChange}
+                variant="outlined"
+                pattern={"^.{6,}"}
+                title={"Senha deve conter no mínimo 6 caracteres"}
+                label="Senha"
+                placeholder={"Mínimo 6 caracteres"}
+                type={values.showPassword ? "text" : "password"}
+                required
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton onClick={handleClickShowPassword} edge="end">
+                      {values.showPassword ? (
+                        <MdVisibility />
+                      ) : (
+                        <MdVisibilityOff />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
 
-        <ButtonLogin>Entrar</ButtonLogin>
-      </Form>
-      <DivSignUp>
-        <TextSignUp>
-          Não possui cadastro?{" "}
-          <TextOnClick onClick={() => goToPage(navigate, "/signup")}>
-            Clique aqui.
-          </TextOnClick>
-        </TextSignUp>
-      </DivSignUp>
-    </Container>
+            <ButtonLogin>Entrar</ButtonLogin>
+          </Form>
+          <DivSignUp>
+            <TextSignUp>
+              Não possui cadastro?{" "}
+              <TextOnClick onClick={() => goToPage(navigate, "/signup")}>
+                Clique aqui.
+              </TextOnClick>
+            </TextSignUp>
+          </DivSignUp>
+        </Container>
+      )}
+    </>
   );
 }
