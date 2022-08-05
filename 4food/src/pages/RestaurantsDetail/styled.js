@@ -10,7 +10,6 @@ export const CardInfo = styled(CardContent)`
   display: flex;
   flex-direction: row;
   gap: 2.5rem;
-  /* justify-content: space-between; */
   color: #b8b8b8;
   padding: 16px 0;
 `;

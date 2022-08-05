@@ -6,8 +6,5 @@ export const useForm = (inicialState) => {
     const { value, name } = event.target;
     setForm({ ...form, [name]: value });
   };
-  const clear = () => {
-    setForm(inicialState);
-  };
-  return { form, handleInputChange, clear };
+  return { form, handleInputChange };
 };

@@ -13,7 +13,7 @@ export default function EditAddressPage() {
   const navigate = useNavigate();
   const [data, setData] = useState();
   const [edit, setEdit] = useState(false);
-  const { form, handleInputChange, clear } = useForm({
+  const { form, handleInputChange } = useForm({
     street: "",
     number: "",
     neighbourhood: "",

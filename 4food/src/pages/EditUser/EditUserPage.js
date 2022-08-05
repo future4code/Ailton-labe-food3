@@ -13,7 +13,7 @@ export default function EditUserPage() {
   const navigate = useNavigate();
   const [data, setData] = useState();
   const [edit, setEdit] = useState(false);
-  const { form, handleInputChange, clear } = useForm({
+  const { form, handleInputChange } = useForm({
     name: "",
     email: "",
     cpf: "",

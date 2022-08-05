@@ -23,7 +23,7 @@ export default function SignUpPage() {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [data, setData] = useState("");
 
-  const { form, handleInputChange, clear } = useForm({
+  const { form, handleInputChange } = useForm({
     name: "",
     email: "",
     cpf: "",
@@ -50,7 +50,7 @@ export default function SignUpPage() {
     if (form.password === passwordConfirm) {
       requestData("post", "signup", form, "", setData);
     } else {
-      alert("Algo deu errado!");
+      // alert("Algo deu errado!");
     }
   };
 
@@ -116,7 +116,6 @@ export default function SignUpPage() {
           onChange={handleInputChange}
           label={"Senha"}
           pattern={"^.{6,}"}
-          title={"Senha deve conter no mínimo 6 caracteres"}
           placeholder={"Mínimo 6 caracteres"}
           variant={"outlined"}
           fullWidth
@@ -127,6 +126,7 @@ export default function SignUpPage() {
             m: 0,
             mb: "1rem",
           }}
+          helperText={'Senha deve conter no mínimo 6 caracteres'}
         />
         <TextField
           name={"passwordConfirm"}
@@ -135,7 +135,6 @@ export default function SignUpPage() {
           label={"Confirmar Senha"}
           placeholder={"Confirme a senha anterior"}
           pattern={"^.{6,}"}
-          title={"Senha deve conter no mínimo 6 caracteres"}
           variant={"outlined"}
           fullWidth
           margin="normal"
@@ -145,6 +144,7 @@ export default function SignUpPage() {
             m: 0,
             mb: "1rem",
           }}
+          helperText={'Deve ser a mesma que a anterior'}
         />
         <ButtonLogin>Criar</ButtonLogin>
       </Form>

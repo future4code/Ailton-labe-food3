@@ -12,5 +12,17 @@ export const ContainerLoad = styled.div`
 export const ImgLoad = styled.img`
   width: 7.875rem;
   height: 4.063rem;
-  object-fit: contain;
+  object-fit: contain; 
+  animation: scaleButton 2.5s infinite ease-in-out;
+  @keyframes scaleButton {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 `;

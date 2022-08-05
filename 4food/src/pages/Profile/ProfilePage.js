@@ -13,6 +13,7 @@ import {
   TitleAddress,
   InfoHistory,
   Img,
+  ZeroOrders,
 } from "./styled";
 import { goToPage } from "../../routes/coordinator";
 import { useProtectPage } from "../../hooks/useProtectPage";
@@ -26,13 +27,22 @@ export default function ProfilePage() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
+  const Logout = () => {
+    localStorage.removeItem('token')
+    goToPage(navigate, '/login')
+  }
+
   useEffect(() => {
     requestData("get", "profile", "", token, setData);
     requestData("get", "orders/history", "", token, setHistory);
   }, []);
+
   return (
     <div>
-      <Header title={"Meu perfil"} />
+      <Header
+        title={"Meu perfil"}
+        Logout={Logout}
+      />
       {!data && (
         <LoaderContainer>
           <CircularProgress style={{ color: "red" }} />
@@ -55,7 +65,7 @@ export default function ProfilePage() {
           <Address>
             <div>
               <TitleAddress>Endereço cadastrado</TitleAddress>
-              <Info>{data.user.address}</Info>
+              <Info>{data.user.address.substring(0, data.user.address.indexOf('-'))}</Info>
             </div>
             <Img
               src={Edit}
@@ -69,6 +79,8 @@ export default function ProfilePage() {
               history?.orders?.map((item, index) => {
                 return <HistoryCard key={index} history={item} />;
               })}
+            {history?.orders?.length === 0 &&
+              <ZeroOrders>Você não realizou nenhum pedido</ZeroOrders>}
             <Space />
           </History>
         </>

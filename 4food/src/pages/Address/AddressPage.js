@@ -17,7 +17,7 @@ export default function AddressPage() {
   useProtectPage();
   const navigate = useNavigate();
   const [data, setData] = useState("");
-  const { form, handleInputChange, clear } = useForm({
+  const { form, handleInputChange } = useForm({
     street: "",
     number: "",
     neighbourhood: "",
