@@ -5,7 +5,6 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import { grey } from "@mui/material/colors";
 import {
   ContainerCart,
@@ -22,6 +21,7 @@ import {
   TotalPriceValue,
   BtnConfirmDisable,
   CartEmpty,
+  LabelP,
 } from "./styled";
 import { requestData } from "../../services/requestAPI";
 import { GlobalContext } from "../../global/GlobalContext";
@@ -96,7 +96,7 @@ export default function Cart() {
           <AddressUserCart>
             <InfoCart>Endereço de entrega</InfoCart>
             <Address>
-              {data?.address?.street}, {data?.address?.number} -{" "}
+              {data?.address?.street}, {data?.address?.number} - {" "}
               {data?.address?.neighbourhood}
             </Address>
           </AddressUserCart>
@@ -141,14 +141,11 @@ export default function Cart() {
             </TotalPriceValue>
           </TotalPrice>
           <Payment>
-            <FormControl fullWidth>
-              <FormLabel
-                id="demo-radio-buttons-group-label"
-                sx={{ color: "black", borderBottom: 1, width: "90%" }}
-              >
-                Forma de Pagamento
-              </FormLabel>
+            <LabelP>
+              Forma de Pagamento
+            </LabelP>
 
+            <FormControl fullWidth>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 defaultValue="money"

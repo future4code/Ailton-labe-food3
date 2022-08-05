@@ -9,8 +9,7 @@ export const Address = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: #eeeeee;
-  /* background-color: red; */
-  min-height: 4.75rem;
+  min-height: 5.25rem;
   padding: 0 1rem;
   margin-top: 1rem;
   align-items: center;
@@ -39,3 +38,11 @@ export const InfoHistory = styled(Info)`
   line-height: 0.5rem;
   border-bottom: 1px solid #000;
 `;
+
+export const ZeroOrders = styled.p`
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: -0.39px;
+  text-align: center;
+  margin-top: 1rem;
+`

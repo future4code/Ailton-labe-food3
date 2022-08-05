@@ -5,7 +5,7 @@ import logo from "../../assets/img/logo2.png"
 export default function Loading() {
   return (
     <ContainerLoad>
-        <ImgLoad src={logo}/>
+      <ImgLoad src={logo} />
     </ContainerLoad>
   )
 }

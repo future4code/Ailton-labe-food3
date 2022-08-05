@@ -31,7 +31,7 @@ import Loading from "../../component/Loading/Loading";
 export default function LoginPage() {
   useUnprotectPage();
   const [load, setLoad] = useState(true);
-  const { form, handleInputChange, clear } = useForm({
+  const { form, handleInputChange } = useForm({
     email: "",
     password: "",
   });
@@ -54,7 +54,7 @@ export default function LoginPage() {
   useEffect(() => {
     setTimeout(() => {
       setLoad(false)
-    }, 2000);
+    }, 2500);
     if (!!data) {
       localStorage.setItem("token", data.token);
       if (!!data.user.hasAddress) {

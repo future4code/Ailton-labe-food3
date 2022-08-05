@@ -95,3 +95,14 @@ export const CartEmpty = styled.p`
   letter-spacing: -0.39px;
   text-align: center;
 `;
+
+export const LabelP = styled.p`
+height: 1.300rem; 
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+  Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+font-size: 1rem;
+letter-spacing: -0.39px;
+line-height: 0.5rem;
+  border-bottom: 1px solid #000;
+  margin-right: 1.5rem;
+`

@@ -21,7 +21,7 @@ export default function CardHome({ item }) {
           image={item.logoUrl}
           alt={item.name}
         />
-        <Space/>
+        <Space />
         <Title>{item.name}</Title>
         <CardInfo>
           <Typography variant="body2" color="text.secondary">
@@ -29,7 +29,6 @@ export default function CardHome({ item }) {
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Frete R${item.shipping.toFixed(2)}
-
           </Typography>
         </CardInfo>
       </CardActionArea>

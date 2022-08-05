@@ -85,7 +85,6 @@ export const Quantity = styled.p`
   font-size: 1rem;
   align-items: center;
   justify-content: center;
-  /* font-weight: 500; */
   width: 2.063rem;
   height: 2.063rem;
   border-radius: 0 8px 0 8px;

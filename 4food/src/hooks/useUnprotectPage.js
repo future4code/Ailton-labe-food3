@@ -4,10 +4,10 @@ import { goToPage } from "../routes/coordinator";
 
 export const useUnprotectPage = () => {
     const navigate = useNavigate()
-    useEffect(()=>{
+    useEffect(() => {
         const token = localStorage.getItem("token")
-        if(token){
-            goToPage(navigate,"/")
+        if (token) {
+            goToPage(navigate, "/")
         }
-    },[navigate])
+    }, [navigate])
 };

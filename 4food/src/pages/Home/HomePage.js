@@ -94,7 +94,7 @@ export default function HomePage() {
         </CardContainer>
       )}
       {order?.order && <PopUpOrder order={order} />}
-      <Space/>
+      <Space />
       <Footer page={"home"} />
     </div>
   );

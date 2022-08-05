@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DetailCard from "../../component/DetailCard/DetailCard";
 import { useProtectPage } from "../../hooks/useProtectPage";
@@ -9,12 +9,10 @@ import { DetailsTitle, CardContainer, CardInfo, Title } from "./styled";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, CircularProgress } from "@mui/material";
-import { GlobalContext } from "../../global/GlobalContext";
 import Footer from "../../component/Footer/Footer";
 
 export default function RestaurantDetailPage() {
   useProtectPage();
-  const { setCart, cart } = useContext(GlobalContext);
   const [data, setData] = useState("");
   const params = useParams();
   useEffect(() => {

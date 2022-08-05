@@ -4,10 +4,10 @@ import { goToPage } from "../routes/coordinator";
 
 export const useProtectPage = () => {
     const navigate = useNavigate()
-    useEffect(()=>{
+    useEffect(() => {
         const token = localStorage.getItem("token")
-        if(!token){
-            goToPage(navigate,"/login")
+        if (!token) {
+            goToPage(navigate, "/login")
         }
-    },[navigate])
+    }, [navigate])
 };

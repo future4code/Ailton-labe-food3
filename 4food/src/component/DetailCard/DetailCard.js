@@ -101,8 +101,8 @@ export default function DetailCard({ product, restaurant, page }) {
           R$
           {page === "cart" && exist.bool
             ? (product?.price * cart?.products[exist?.index]?.quantity).toFixed(
-                2
-              )
+              2
+            )
             : product?.price?.toFixed(2)}
         </Price>
         {!exist.bool && <ButtonAdd onClick={addToCart}>Adicionar</ButtonAdd>}

@@ -9,7 +9,6 @@ export const OrderCard = styled.div`
   background-color: #e8222e;
   bottom: 2.96rem;
   align-items: center;
-  /* z-index: 10; */
 `;
 
 export const PopUpCard = styled.div`
