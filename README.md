@@ -48,7 +48,7 @@ Projeto Final do módulo Frontend da instituição Labenu, a proposta é uma apl
     - Botão de logout na página de perfil
 
 <h2 id="surge"> 🔗Link Surge </h2>  
-- https://fourfood3.surge.sh
+https://fourfood3.surge.sh
 
 <h2 id="projeto"> 💻Como Rodar o Projeto Localmente </h2>
 
@@ -109,7 +109,7 @@ Página de Cadastro |  Página de Cadastro de Endereço
 
 Home  |  Home com filtro selecionado
 :-------------------------:|:-------------------------:
-![Home Page](https://user-images.githubusercontent.com/104591781/183250422-89ee0942-9425-49a4-8f40-bcc75789fa80.jpeg)  |  ![Home Page com filtro selecionado](https://user-images.githubusercontent.com/104591781/183250421-044c02b8-5997-472a-ac0c-991c79ea1af3.jpeg)  
+![Home Page](https://user-images.githubusercontent.com/104591781/183252781-7fc750a9-49be-4c7e-b067-ac512e82e46d.jpeg)  |  ![Home Page com filtro selecionado](https://user-images.githubusercontent.com/104591781/183250421-044c02b8-5997-472a-ac0c-991c79ea1af3.jpeg)  
   
 Página do Restaurante |  Página do Carrinho
 :-------------------------:|:-------------------------:
