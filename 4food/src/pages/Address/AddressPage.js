@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TextField, CircularProgress } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useForm } from "../../hooks/useForm";
 import { goToPage } from "../../routes/coordinator";
 import { requestData } from "../../services/requestAPI";

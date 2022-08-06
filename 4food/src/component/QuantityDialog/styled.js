@@ -6,4 +6,3 @@ export const DialogContainer = styled(Dialog)`
     margin: 0;
   }
 `;
-

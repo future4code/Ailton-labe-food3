@@ -5,7 +5,6 @@ import Card from "@mui/material/Card";
 export const CardContainer = styled(Card)`
   margin: 0 auto;
 `;
-
 export const CardInfo = styled(CardContent)`
   display: flex;
   flex-direction: row;
@@ -13,7 +12,6 @@ export const CardInfo = styled(CardContent)`
   color: #b8b8b8;
   padding: 16px 0;
 `;
-
 export const Title = styled.span`
   color: #e8222e;
   width: 18.5rem;
@@ -28,7 +26,6 @@ export const Title = styled.span`
   line-height: normal;
   letter-spacing: -0.39px;
 `;
-
 export const DetailsTitle = styled.p`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;

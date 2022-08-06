@@ -2,7 +2,14 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { BASE_URL } from "../constants/url";
 
-export const requestData = async (type, path, body, token, setData, setEdit) => {
+export const requestData = async (
+  type,
+  path,
+  body,
+  token,
+  setData,
+  setEdit
+) => {
   try {
     let res;
     if (!body)
@@ -14,7 +21,7 @@ export const requestData = async (type, path, body, token, setData, setEdit) => 
         headers: { auth: token },
       });
     if (setEdit) {
-      setEdit(true)
+      setEdit(true);
     }
     if (setData) {
       setData(res.data);
@@ -25,7 +32,7 @@ export const requestData = async (type, path, body, token, setData, setEdit) => 
       title: "Oops...",
       text: `${error.response.data.message}`,
       footer: `Código do erro ${error.response.status}`,
-      confirmButtonColor: '#e8222e'
+      confirmButtonColor: "#e8222e",
     });
   }
 };

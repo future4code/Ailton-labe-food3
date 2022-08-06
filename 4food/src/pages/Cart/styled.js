@@ -4,7 +4,6 @@ import { ButtonLogin } from "../../global/GeneralStyled";
 export const ContainerCart = styled.div`
   position: relative;
 `;
-
 export const AddressUserCart = styled.div`
   height: 4.75rem;
   background-color: #eee;
@@ -13,7 +12,6 @@ export const AddressUserCart = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
 export const InfoCart = styled.p`
   width: 20.5rem;
   margin: 0.1rem 1rem;
@@ -42,13 +40,11 @@ export const AddressRestaurantCart = styled.div`
   justify-content: center;
 `;
 export const CardCart = styled.div``;
-
 export const BtnConfirm = styled(ButtonLogin)`
   width: 20.5rem;
   margin: 0 auto;
   margin-top: 1rem;
 `;
-
 export const BtnConfirmDisable = styled(BtnConfirm)`
   background-color: rgba(232, 34, 46, 0.5);
   position: fixed;
@@ -59,7 +55,6 @@ export const BtnConfirmDisable = styled(BtnConfirm)`
   align-items: center;
   justify-content: center;
 `;
-
 export const Shipping = styled.p`
   text-align: right;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -75,17 +70,14 @@ export const TotalPrice = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
-
 export const TotalPriceValue = styled.p`
   color: #e8222e;
   font-size: 1.125rem;
   font-weight: bold;
 `;
-
 export const Payment = styled.div`
   padding-left: 1.5rem;
 `;
-
 export const CartEmpty = styled.p`
   margin-top: 1.5rem;
   margin-bottom: 2.813rem;
@@ -95,14 +87,13 @@ export const CartEmpty = styled.p`
   letter-spacing: -0.39px;
   text-align: center;
 `;
-
 export const LabelP = styled.p`
-height: 1.300rem; 
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-  Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-font-size: 1rem;
-letter-spacing: -0.39px;
-line-height: 0.5rem;
+  height: 1.3rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  letter-spacing: -0.39px;
+  line-height: 0.5rem;
   border-bottom: 1px solid #000;
   margin-right: 1.5rem;
-`
+`;
