@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import LogoIFuture from "../../assets/img/logo.png";
 import {
   TextField,
-  CircularProgress,
   OutlinedInput,
   InputAdornment,
   IconButton,
@@ -20,13 +19,11 @@ import {
   Container,
   DivTitle,
   Form,
-  ImgLogo,
   Title,
   ButtonLogin,
   ErrorText,
 } from "../../global/GeneralStyled";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
-import { grey, pink } from "@mui/material/colors";
 
 export default function SignUpPage() {
   useUnprotectPage();
@@ -70,7 +67,6 @@ export default function SignUpPage() {
     if (form.password === passwordConfirm) {
       requestData("post", "signup", form, "", setData);
     } else {
-      // alert("Algo deu errado!");
     }
   };
   return (

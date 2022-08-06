@@ -10,7 +10,6 @@ export const OrderCard = styled.div`
   bottom: 2.96rem;
   align-items: center;
 `;
-
 export const PopUpCard = styled.div`
   display: flex;
   margin: 0 1.5rem;
@@ -37,8 +36,6 @@ export const Order = styled.p`
 `;
 export const Restaurant = styled(Order)`
   color: #000;
-  
-
 `;
 export const Price = styled(Order)`
   font-weight: bold;

@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-
+import QuantityDialog from "../QuantityDialog/QuantityDialog";
+import { GlobalContext } from "../../global/GlobalContext";
+import Swal from "sweetalert2";
 import {
   Category,
   Description,
@@ -11,9 +13,6 @@ import {
   ButtonRemoved,
   Quantity,
 } from "./styled";
-import QuantityDialog from "../QuantityDialog/QuantityDialog";
-import { GlobalContext } from "../../global/GlobalContext";
-import Swal from "sweetalert2";
 
 export default function DetailCard({ product, restaurant, page }) {
   const [openButton, setOpenButton] = useState(false);
@@ -101,8 +100,8 @@ export default function DetailCard({ product, restaurant, page }) {
           R$
           {page === "cart" && exist.bool
             ? (product?.price * cart?.products[exist?.index]?.quantity).toFixed(
-              2
-            )
+                2
+              )
             : product?.price?.toFixed(2)}
         </Price>
         {!exist.bool && <ButtonAdd onClick={addToCart}>Adicionar</ButtonAdd>}

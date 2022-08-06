@@ -3,7 +3,6 @@ import LogoIFuture from "../../assets/img/logo.png";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import {
   TextField,
-  CircularProgress,
   FormControl,
   InputLabel,
   OutlinedInput,
@@ -47,13 +46,9 @@ export default function LoginPage() {
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
   useEffect(() => {
     setTimeout(() => {
-      setLoad(false)
+      setLoad(false);
     }, 2500);
     if (!!data) {
       localStorage.setItem("token", data.token);
