@@ -29,6 +29,7 @@ export default function ProfilePage() {
 
   const Logout = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem('hasAddress')
     goToPage(navigate, '/login')
   }
 

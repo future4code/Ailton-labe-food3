@@ -29,6 +29,7 @@ export default function AddressPage() {
   useEffect(() => {
     if (!!data) {
       localStorage.setItem("token", data.token);
+      localStorage.setItem("hasAddress", data.user.hasAddress);
       goToPage(navigate, "/");
     }
   }, [data]);

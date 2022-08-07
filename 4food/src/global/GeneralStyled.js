@@ -28,7 +28,6 @@ export const LoaderContainer = styled.div`
 `;
 
 export const Title = styled.p`
-  width: 18.5rem;
   height: 1.125rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
