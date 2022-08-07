@@ -28,10 +28,7 @@ export default function ProfilePage() {
   const token = localStorage.getItem("token");
 
   const Logout = () => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('hasAddress')
-    goToPage(navigate, '/login')
-  }
+
 
   useEffect(() => {
     requestData("get", "profile", "", token, setData);
@@ -40,10 +37,7 @@ export default function ProfilePage() {
 
   return (
     <div>
-      <Header
-        title={"Meu perfil"}
-        Logout={Logout}
-      />
+      <Header title={"Meu perfil"} Logout={Logout} />
       {!data && (
         <LoaderContainer>
           <CircularProgress style={{ color: "red" }} />
@@ -66,7 +60,9 @@ export default function ProfilePage() {
           <Address>
             <div>
               <TitleAddress>Endereço cadastrado</TitleAddress>
-              <Info>{data.user.address.substring(0, data.user.address.indexOf('-'))}</Info>
+              <Info>
+                {data.user.address.substring(0, data.user.address.indexOf("-"))}
+              </Info>
             </div>
             <Img
               src={Edit}
@@ -80,8 +76,9 @@ export default function ProfilePage() {
               history?.orders?.map((item, index) => {
                 return <HistoryCard key={index} history={item} />;
               })}
-            {history?.orders?.length === 0 &&
-              <ZeroOrders>Você não realizou nenhum pedido</ZeroOrders>}
+            {history?.orders?.length === 0 && (
+              <ZeroOrders>Você não realizou nenhum pedido</ZeroOrders>
+            )}
             <Space />
           </History>
         </>

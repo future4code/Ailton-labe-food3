@@ -15,7 +15,7 @@ export default function QuantityDialog({
   setOpenButton,
   setQntProduct,
   qntProduct,
-  setConfirmAdd
+  setConfirmAdd,
 }) {
   const [open, setOpen] = useState(false);
 
@@ -27,7 +27,6 @@ export default function QuantityDialog({
     setOpen(false);
     setOpenButton(false);
   };
-
   const submitAdd = () => {
     setOpen(false);
     setOpenButton(false);

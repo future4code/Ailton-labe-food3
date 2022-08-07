@@ -96,7 +96,7 @@ export default function Cart() {
           <AddressUserCart>
             <InfoCart>Endereço de entrega</InfoCart>
             <Address>
-              {data?.address?.street}, {data?.address?.number} - {" "}
+              {data?.address?.street}, {data?.address?.number} -{" "}
               {data?.address?.neighbourhood}
             </Address>
           </AddressUserCart>
@@ -141,9 +141,7 @@ export default function Cart() {
             </TotalPriceValue>
           </TotalPrice>
           <Payment>
-            <LabelP>
-              Forma de Pagamento
-            </LabelP>
+            <LabelP>Forma de Pagamento</LabelP>
 
             <FormControl fullWidth>
               <RadioGroup

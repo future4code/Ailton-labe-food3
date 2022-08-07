@@ -9,19 +9,16 @@ export const Rectangle = styled.div`
   border: solid 1px #b8b8b8;
   position: relative;
 `;
-
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
 export const Img = styled.img`
   width: 6rem;
   height: 100%;
   border-radius: 8px;
   object-fit: cover;
 `;
-
 export const Category = styled.span`
   color: #e8222e;
   margin: 0.5rem 0 0;
@@ -71,12 +68,10 @@ export const ButtonAdd = styled.p`
   position: absolute;
   border: solid 1px #000;
 `;
-
 export const ButtonRemoved = styled(ButtonAdd)`
   color: #e8222e;
   border: solid 1px #e8222e;
 `;
-
 export const Quantity = styled.p`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
