@@ -28,9 +28,7 @@ export default function ProfilePage() {
   const token = localStorage.getItem("token");
 
   const Logout = () => {
-    localStorage.removeItem("token");
-    goToPage(navigate, "/login");
-  };
+
 
   useEffect(() => {
     requestData("get", "profile", "", token, setData);

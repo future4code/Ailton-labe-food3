@@ -54,6 +54,7 @@ export default function SignUpPage() {
   useEffect(() => {
     if (!!data) {
       localStorage.setItem("token", data.token);
+      localStorage.setItem("hasAddress", data.user.hasAddress);
       if (!!data.user.hasAddress) {
         goToPage(navigate, "/");
       } else {

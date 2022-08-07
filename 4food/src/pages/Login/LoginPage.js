@@ -52,6 +52,7 @@ export default function LoginPage() {
     }, 2500);
     if (!!data) {
       localStorage.setItem("token", data.token);
+      localStorage.setItem("hasAddress", data.user.hasAddress);
       if (!!data.user.hasAddress) {
         goToPage(navigate, "/");
       } else {
